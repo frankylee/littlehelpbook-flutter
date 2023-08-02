@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:littlehelpbook_flutter/common/router/lhb_router.dart';
 
 import 'package:littlehelpbook_flutter/theme/lhb_theme.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -11,11 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Little Help Book',
       theme: LittleHelpBookTheme.lightTheme,
       darkTheme: LittleHelpBookTheme.darkTheme,
-      home: const MyHomePage(title: 'Little Help Book Home Page'),
+      routerConfig: lhbRouter,
     );
   }
 }
