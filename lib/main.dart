@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'theme/lhb_theme.dart';
+import 'package:littlehelpbook_flutter/theme/lhb_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({required this.title, super.key});
 
   final String title;
 
