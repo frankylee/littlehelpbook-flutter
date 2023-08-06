@@ -1,4 +1,4 @@
-package com.example.littlehelpbook_flutter
+package littlehelpbook.demo
 
 import io.flutter.embedding.android.FlutterActivity
 
