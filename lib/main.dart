@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:isar/isar.dart';
 import 'package:littlehelpbook_flutter/common/router/lhb_router.dart';
-import 'package:littlehelpbook_flutter/db/isar_collections/service.dart';
-import 'package:littlehelpbook_flutter/db/isar_provider.dart';
 
 import 'package:littlehelpbook_flutter/theme/lhb_theme.dart';
 
@@ -17,12 +14,7 @@ Future<void> main() async {
 
 /// Initialize the app with a [ProviderScope] and provider overrides.
 Future<ProviderScope> buildAppWithRiverpod(Widget app) async {
-  final isar = await openIsar();
-
   final providerScope = ProviderScope(
-    overrides: [
-      isarProvider.overrideWithValue(isar),
-    ],
     child: app,
   );
 
@@ -56,22 +48,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() async {
-    if (_counter == 0) {
-      final service = Service()
-        ..id = "1"
-        ..categoryId = "cat_1"
-        ..name = "BillService"
-        ..nameEs = "BillServico";
-      final isar = ref.read(isarProvider);
-      await isar.writeTxn(() => isar.services.put(service));
-    }
-
-    if (_counter >= 1) {
-      final services = await ref.read(isarProvider).services.where().findAll();
-      services.forEach(
-        (element) => debugPrint(element.toString()),
-      );
-    }
     setState(() {
       _counter++;
     });
