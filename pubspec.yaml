@@ -14,6 +14,8 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   go_router: ^10.0.0
+  intl: ^0.18.1
+  intl_utils: ^2.8.4
   path_provider: ^2.0.15
   powersync: ^0.4.0
   riverpod: ^2.3.6
@@ -28,3 +30,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_intl:
+  enabled: true

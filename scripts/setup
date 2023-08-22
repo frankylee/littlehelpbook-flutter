@@ -42,10 +42,10 @@ exit_nonzero $? "very_good packages get --recursive failed" 15
 # exit_nonzero $? "Running flutter pub run build_runner build failed!" 49
 
 # Will setup localization next
-# Generate localization files
-# echo "\n\nRunning flutter gen-l10n..."
-# time ./scripts/gen-intl
-# exit_nonzero $? "Running flutter gen-l10n failed" 60
+Generate localization files
+echo "\n\nRunning flutter gen-l10n..."
+fvm flutter pub run intl_utils:generate
+exit_nonzero $? "Running flutter gen-l10n failed" 60
 
 if [ $running_in_ci -eq 1 ]; then
   echo "Skipping Formatting since running on CI."
