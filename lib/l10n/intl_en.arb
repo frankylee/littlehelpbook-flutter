@@ -1,3 +1,17 @@
 {
-  "pushedTheButtonTimesLabel": "You have pushed the button this many times:"
+  "adjustYourSettings": "Adjust your settings to fit your needs.",
+  "checkOutYourFavorites": "Checkout your favorite service providers.",
+  "favorites": "Favorites",
+  "find": "Find",
+  "findServiceProviders": "Find Service Providers",
+  "findServiceProvidersByCategoryLocation": "Search service providers by category and location.",
+  "home": "Home",
+  "goToSubroute": "Go to Subroute",
+  "loremIpsum": "Lorem Ipsum",
+  "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "littleHelpBook": "Little Help Book",
+  "pushedTheButtonTimesLabel": "You have pushed the button this many times:",
+  "settings": "Settings",
+  "thisIsHome": "This is the initial home route.",
+  "thisIsSubroute": "This is a subroute."
 }
