@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             ElevatedButton(
-              onPressed: () => context.go('/lorem'),
+              onPressed: () => context.go('/home/lorem'),
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
                   context.colorTheme.secondaryContainer,
