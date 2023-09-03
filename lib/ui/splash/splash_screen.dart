@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
-import 'package:littlehelpbook_flutter/theme/lhb_colors.dart';
 import 'package:littlehelpbook_flutter/ui/assets/assets.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -47,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        color: darkColorScheme.background,
+        color: Colors.black,
         child: SizedBox(
           width: 240.0,
           child: FadeTransition(
