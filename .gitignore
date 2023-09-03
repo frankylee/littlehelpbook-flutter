@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Secrets related
+.env
+
 # Symbolication related
 app.*.symbols
 

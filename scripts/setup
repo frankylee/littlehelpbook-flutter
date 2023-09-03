@@ -35,11 +35,10 @@ echo "\n\nRunning very_good get..."
 time very_good packages get --recursive
 exit_nonzero $? "very_good packages get --recursive failed" 15
 
-# Not using Build Runner yet.
 # Run Build Runner.
-# echo "\n\nRunning flutter pub run build_runner build..."
-# time fvm flutter pub run build_runner build -d 
-# exit_nonzero $? "Running flutter pub run build_runner build failed!" 49
+echo "\n\nRunning flutter pub run build_runner build..."
+time fvm flutter pub run build_runner build -d 
+exit_nonzero $? "Running flutter pub run build_runner build failed!" 49
 
 # Will setup localization next
 Generate localization files
