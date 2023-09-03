@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/common/router/lhb_router.dart';
+import 'package:littlehelpbook_flutter/data/powersync/powersync.dart';
 import 'package:littlehelpbook_flutter/generated/l10n.dart';
-
 import 'package:littlehelpbook_flutter/theme/lhb_theme.dart';
 
 Future<void> main() async {
@@ -10,6 +10,7 @@ Future<void> main() async {
   // usePathUrlStrategy();
 
   final app = await buildAppWithRiverpod(const MyApp());
+  await openPowerSyncDatabase();
   runApp(app);
 }
 
