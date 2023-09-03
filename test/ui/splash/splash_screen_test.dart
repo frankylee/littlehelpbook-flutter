@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:littlehelpbook_flutter/app.dart';
-import 'package:littlehelpbook_flutter/main.dart';
+import 'package:littlehelpbook_flutter/ui/navigation/scaffold_with_nested_navigation.dart';
 import 'package:littlehelpbook_flutter/ui/splash/splash_screen.dart';
 
 void main() {
   testWidgets("Splash screen is the initial route", (tester) async {
-    await tester.pumpWidget(ProviderScope(child: const MyApp()));
+    await tester.pumpWidget(ProviderScope(child: const LittleHelpBook()));
     // Splash screen should no longer be in the tree for two seconds.
     await tester.pump(const Duration(seconds: 2));
     // Splash screen should be in the tree, and the main app should not.
@@ -15,7 +15,7 @@ void main() {
   });
 
   testWidgets("Splash screen navigates away after duration", (tester) async {
-    await tester.pumpWidget(ProviderScope(child: const MyApp()));
+    await tester.pumpWidget(ProviderScope(child: const LittleHelpBook()));
     // Splash screen should no longer be in the tree for two seconds.
     await tester.pump(const Duration(seconds: 2));
     // Allow the routing to occur.

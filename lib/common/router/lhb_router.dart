@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:littlehelpbook_flutter/app.dart';
 import 'package:littlehelpbook_flutter/ui/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/ui/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/ui/home/home_screen.dart';
+import 'package:littlehelpbook_flutter/ui/navigation/scaffold_with_nested_navigation.dart';
 import 'package:littlehelpbook_flutter/ui/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/ui/splash/splash_screen.dart';
 
