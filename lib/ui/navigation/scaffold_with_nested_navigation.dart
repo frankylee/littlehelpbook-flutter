@@ -8,9 +8,9 @@ import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart'
 // https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter
 class ScaffoldWithNestedNavigation extends StatelessWidget {
   const ScaffoldWithNestedNavigation({
-    Key? key,
+    super.key = const ValueKey('ScaffoldWithNestedNavigation'),
     required this.navigationShell,
-  }) : super(key: key ?? const ValueKey('ScaffoldWithNestedNavigation'));
+  });
 
   final StatefulNavigationShell navigationShell;
 

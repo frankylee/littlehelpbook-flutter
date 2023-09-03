@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             ElevatedButton(
-              onPressed: () => context.go('/home/lorem'),
+              onPressed: () => const LoremIpsumRoute().go(context),
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
                   context.colorTheme.secondaryContainer,

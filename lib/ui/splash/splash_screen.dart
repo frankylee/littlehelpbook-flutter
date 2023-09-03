@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/theme/lhb_colors.dart';
 import 'package:littlehelpbook_flutter/ui/assets/assets.dart';
 
@@ -36,9 +36,10 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _redirect() async {
-    await Future.delayed(Duration(seconds: 2), () async {
-      context.go('/home');
-    });
+    await Future.delayed(
+      Duration(seconds: 2),
+      () async => const HomeRoute().go(context),
+    );
   }
 
   @override

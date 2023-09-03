@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/ui/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/ui/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/ui/home/home_screen.dart';
@@ -17,7 +18,7 @@ final _shellNavigatorKeySettings =
     GlobalKey<NavigatorState>(debugLabel: 'settingsTab');
 
 final lhbRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: const SplashRoute().path,
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,
@@ -28,7 +29,7 @@ final lhbRouter = GoRouter(
 // https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter
 final _routes = [
   GoRoute(
-    path: '/',
+    path: const SplashRoute().path,
     pageBuilder: (context, state) => const MaterialPage(
       child: const SplashScreen(),
     ),
@@ -42,13 +43,13 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyHome,
         routes: [
           GoRoute(
-            path: '/home',
+            path: const HomeRoute().path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const MyHomePage(),
             ),
             routes: [
               GoRoute(
-                path: 'lorem',
+                path: const LoremIpsumRoute().path,
                 builder: (context, state) => const HomeSubroute(),
               ),
             ],
@@ -59,7 +60,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFind,
         routes: [
           GoRoute(
-            path: '/find',
+            path: const FindRoute().path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FindScreen(),
             ),
@@ -70,7 +71,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFavorites,
         routes: [
           GoRoute(
-            path: '/favorites',
+            path: const FavoritesRoute().path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FavoritesScreen(),
             ),
@@ -81,7 +82,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeySettings,
         routes: [
           GoRoute(
-            path: '/settings',
+            path: const SettingsRoute().path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const SettingsScreen(),
             ),

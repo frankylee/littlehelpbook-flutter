@@ -22,6 +22,7 @@ dependencies:
   path_provider: ^2.0.15
   powersync: ^0.4.0
   riverpod: ^2.3.6
+  simple_routes: ^0.0.5
   supabase_flutter: ^1.10.14
 
 dev_dependencies:
