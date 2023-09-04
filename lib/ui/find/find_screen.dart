@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/common/extensions/text_style.ext.dart';
 
 class FindScreen extends StatelessWidget {
   const FindScreen({super.key});
@@ -19,7 +20,7 @@ class FindScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               context.l10n.findServiceProvidersByCategoryLocation,
-              style: context.textTheme.headlineLarge,
+              style: context.textTheme.headlineLarge?.error(context),
             ),
           ],
         ),

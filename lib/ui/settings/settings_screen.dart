@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/common/extensions/text_style.ext.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -19,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               context.l10n.adjustYourSettings,
-              style: context.textTheme.headlineLarge,
+              style: context.textTheme.headlineLarge?.primary(context),
             ),
           ],
         ),

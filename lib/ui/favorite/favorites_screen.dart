@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/common/extensions/text_style.ext.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
@@ -19,7 +20,7 @@ class FavoritesScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               context.l10n.checkOutYourFavorites,
-              style: context.textTheme.headlineLarge,
+              style: context.textTheme.headlineLarge?.secondary(context),
             ),
           ],
         ),
