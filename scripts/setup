@@ -1,63 +1,36 @@
 #!/usr/bin/env zsh
 
-
 flavor=${1:-dev}
-skip_fetch_envs=${2:-fetch}
-running_in_ci=0
-graphql_schema_url="not_a_url"
 
 echo "\nSetting up $flavor flavor..."
-
-# Not needed right now but will need later.
-# if [[ -v BITRISE_IO ]] || [ -v GITHUB_ACTIONS ] || [ -v SENTRY_AUTH_TOKEN ]; then
-#   echo "Running on CI..."
-#   running_in_ci=1
-# fi
-
-# if [ $skip_fetch_envs = "skip_env" ]; then
-#   echo "\nSkipping ENV Fetch from 1password"
-# else 
-#   echo "\nFetching $flavor env from 1Password..."
-#   fetch_env $flavor $running_in_ci
-#   exit_nonzero $? "fetch_env $flavor failed" 5
-# fi
 
 # Clean up cache for generated, files, etc.
 echo "\n\nRunning fvm flutter clean..."
 time fvm flutter clean
-exit_nonzero $? "fvm flutter clean failed" 10
 
-activate_very_good
-exit_nonzero $? "fvm dart pub global activate very_good_cli failed" 11
+echo "\n\nRunning fvm dart pub global activate very_good_cli..."
+time dart pub global activate very_good_cli
+time export PATH="$PATH":"$HOME/.pub-cache/bin"
+time very_good --analytics false
 
 # Update dependencies based on any changes in the pubspec.yaml
 echo "\n\nRunning very_good get..."
 time very_good packages get --recursive
-exit_nonzero $? "very_good packages get --recursive failed" 15
 
 # Run Build Runner.
 echo "\n\nRunning flutter pub run build_runner build..."
 time fvm flutter pub run build_runner build -d 
-exit_nonzero $? "Running flutter pub run build_runner build failed!" 49
 
-# Will setup localization next
-Generate localization files
+# Generate localization files
 echo "\n\nRunning flutter gen-l10n..."
 fvm flutter pub run intl_utils:generate
-exit_nonzero $? "Running flutter gen-l10n failed" 60
 
-if [ $running_in_ci -eq 1 ]; then
-  echo "Skipping Formatting since running on CI."
-else 
-  # Make sure format is good
-  echo "\n\nRunning dart format ..."
-  time fvm dart format .
-  exit_nonzero $? "Running dart format failed" 30
-fi
+# Make sure format is good
+echo "\n\nRunning dart format ..."
+time fvm dart format .
 
 # Make sure code is good
 echo "\n\nRunning flutter analyze..."
 time fvm flutter analyze .
-exit_nonzero $? "Running flutter analyze failed" 80
 
 exit 0
