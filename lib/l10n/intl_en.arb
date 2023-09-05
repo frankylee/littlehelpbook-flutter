@@ -5,13 +5,18 @@
   "find": "Find",
   "findServiceProviders": "Find Service Providers",
   "findServiceProvidersByCategoryLocation": "Search service providers by category and location.",
+  "findServiceProvidersInLaneCounty": "Find services and providers in Lane County.",
   "home": "Home",
   "goToSubroute": "Go to Subroute",
   "loremIpsum": "Lorem Ipsum",
   "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   "littleHelpBook": "Little Help Book",
-  "pushedTheButtonTimesLabel": "You have pushed the button this many times:",
+  "providers": "Providers",
+  "services": "Services",
+  "servicesCouldNotBeFound": "Services could not be found at this time. Please check back later.",
+  "servicesExploreByCategory": "Explore services by category to find providers.",
   "settings": "Settings",
   "thisIsHome": "This is the initial home route.",
-  "thisIsSubroute": "This is a subroute."
+  "thisIsSubroute": "This is a subroute.",
+  "uhOhSomethingIsWrong": "Uh oh! Something is wrong. Please try again."
 }
