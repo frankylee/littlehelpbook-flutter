@@ -1,41 +1,42 @@
 import 'package:equatable/equatable.dart';
-import 'package:littlehelpbook_flutter/data/service/service.dart';
+import 'package:littlehelpbook_flutter/data/category/category.dart';
 
-typedef CategoryId = String;
+typedef ServiceId = String;
 
-class Category extends Equatable implements Comparable<Category> {
-  Category({
+class Service extends Equatable implements Comparable<Service> {
+  Service({
     required this.id,
     required this.nameEn,
     this.nameEs,
-    this.services = const <Service>[],
+    required this.categoryId,
     required this.createdAt,
     this.updatedAt,
     this.deletedAt,
   });
 
-  factory Category.fromMap(Map<String, dynamic> data) {
-    return Category(
-      id: data['id'] as CategoryId,
+  factory Service.fromMap(Map<String, dynamic> data) {
+    return Service(
+      id: data['id'] as ServiceId,
       nameEn: data['name_en'] as String,
       nameEs: data['name_es'] as String?,
+      categoryId: data['category_id'] as CategoryId,
       createdAt: data['created_at'] as String,
       updatedAt: data['updated_at'] as String?,
       deletedAt: data['deleted_at'] as String?,
     );
   }
 
-  final CategoryId id;
+  final ServiceId id;
   final String nameEn;
   final String? nameEs;
-  final List<Service> services;
+  final CategoryId categoryId;
   final String createdAt;
   final String? updatedAt;
   final String? deletedAt;
 
-  /// Sort categories by name in ascending order.
+  /// Sort services by name in ascending order.
   @override
-  int compareTo(Category other) {
+  int compareTo(Service other) {
     return this.nameEn.compareTo(other.nameEn);
   }
 
@@ -44,6 +45,7 @@ class Category extends Equatable implements Comparable<Category> {
         id,
         nameEn,
         nameEs,
+        categoryId,
         createdAt,
         updatedAt,
         deletedAt,
@@ -52,20 +54,20 @@ class Category extends Equatable implements Comparable<Category> {
   @override
   bool? get stringify => true;
 
-  Category copyWith({
-    CategoryId? id,
+  Service copyWith({
+    ServiceId? id,
     String? nameEn,
     String? nameEs,
-    List<Service>? services,
+    CategoryId? categoryId,
     String? createdAt,
     String? updatedAt,
     String? deletedAt,
   }) {
-    return Category(
+    return Service(
       id: id ?? this.id,
       nameEn: nameEn ?? this.nameEn,
       nameEs: nameEs ?? this.nameEs,
-      services: services ?? this.services,
+      categoryId: categoryId ?? this.categoryId,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       deletedAt: deletedAt ?? this.deletedAt,
