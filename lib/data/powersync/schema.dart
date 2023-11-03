@@ -4,11 +4,10 @@ import 'package:powersync/powersync.dart';
 /// model on the client. The schema as supplied on the client is only a view on top of the schemaless data.
 /// https://docs.powersync.co/usage/installation/client-side-setup/define-schema
 const schema = Schema(
-  ([
+  [
     Table(
       'categories',
       [
-        Column.text('id'),
         Column.text('name_en'),
         Column.text('name_es'),
         Column.text('created_at'),
@@ -19,7 +18,6 @@ const schema = Schema(
     Table(
       'services',
       [
-        Column.text('id'),
         Column.text('name_en'),
         Column.text('name_es'),
         Column.text('category_id'),
@@ -34,7 +32,6 @@ const schema = Schema(
     Table(
       'providers',
       [
-        Column.text('id'),
         Column.text('name'),
         Column.text('description_en'),
         Column.text('description_es'),
@@ -50,7 +47,6 @@ const schema = Schema(
     Table(
       'locations',
       [
-        Column.text('id'),
         Column.text('provider_id'),
         Column.text('name'),
         Column.text('email'),
@@ -75,7 +71,6 @@ const schema = Schema(
     Table(
       'schedules',
       [
-        Column.text('id'),
         Column.text('location_id'),
         Column.text('week_days'),
         Column.integer('numeric_day'),
@@ -91,5 +86,5 @@ const schema = Schema(
         Index('locations', [IndexedColumn('location_id')]),
       ],
     ),
-  ]),
+  ],
 );
