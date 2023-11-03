@@ -1,67 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/ui/home/widgets/white_bird_logo.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.colorTheme.inversePrimary,
+        centerTitle: true,
         title: Text(context.l10n.littleHelpBook),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              context.l10n.thisIsHome,
-              style: context.textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 24.0),
-            ElevatedButton(
-              onPressed: () => const LoremIpsumRoute().go(context),
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
-                  context.colorTheme.secondaryContainer,
-                ),
+          children: [
+            const SizedBox(height: 40.0),
+            WhiteBirdLogo(),
+            const SizedBox(height: 60.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                context.l10n.findServiceProvidersInLaneCounty,
+                style: context.textTheme.headlineSmall,
               ),
-              child: Text(context.l10n.goToSubroute),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomeSubroute extends StatelessWidget {
-  const HomeSubroute({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: context.colorTheme.inversePrimary,
-        title: Text(context.l10n.loremIpsum),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              context.l10n.thisIsSubroute,
-              style: context.textTheme.headlineLarge,
+            const SizedBox(height: 60.0),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.medical_services_outlined),
+              ),
+              title: Text(
+                context.l10n.services,
+                style: context.textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+              trailing: Icon(Icons.chevron_right_rounded),
+              enableFeedback: true,
+              onTap: () async => Future.delayed(
+                const Duration(milliseconds: 120),
+                () async => ServiceRoute().go(context),
+              ),
             ),
-            Text(
-              context.l10n.loremIpsumDolorSitAmet,
-              style: context.textTheme.headlineMedium,
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.business_rounded),
+              ),
+              title: Text(
+                context.l10n.providers,
+                style: context.textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+              trailing: Icon(Icons.chevron_right_rounded),
+              enableFeedback: true,
+              onTap: () {},
             ),
           ],
         ),

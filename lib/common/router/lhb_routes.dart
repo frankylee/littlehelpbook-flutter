@@ -14,11 +14,11 @@ class HomeRoute extends SimpleRoute {
   final String path = '/home';
 }
 
-class LoremIpsumRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
-  const LoremIpsumRoute();
+class ServiceRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
+  const ServiceRoute();
 
   @override
-  final String path = 'lorem';
+  final String path = 'service';
 
   @override
   HomeRoute get parent => const HomeRoute();

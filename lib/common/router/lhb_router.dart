@@ -6,6 +6,7 @@ import 'package:littlehelpbook_flutter/ui/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/ui/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/ui/home/home_screen.dart';
 import 'package:littlehelpbook_flutter/ui/navigation/scaffold_with_nested_navigation.dart';
+import 'package:littlehelpbook_flutter/ui/services/services_screen.dart';
 import 'package:littlehelpbook_flutter/ui/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/ui/splash/splash_screen.dart';
 
@@ -45,12 +46,12 @@ final _routes = [
           GoRoute(
             path: const HomeRoute().path,
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: const MyHomePage(),
+              child: const HomeScreen(),
             ),
             routes: [
               GoRoute(
-                path: const LoremIpsumRoute().path,
-                builder: (context, state) => const HomeSubroute(),
+                path: const ServiceRoute().path,
+                builder: (context, state) => const ServicesScreen(),
               ),
             ],
           ),
