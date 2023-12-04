@@ -6,14 +6,12 @@ class LittleHelpBookTheme {
   const LittleHelpBookTheme._();
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    useMaterial3: true,
     colorScheme: lightColorScheme,
     scaffoldBackgroundColor: lightColorScheme.background,
     snackBarTheme: snackbarTheme,
   );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    useMaterial3: true,
     colorScheme: darkColorScheme,
     scaffoldBackgroundColor: darkColorScheme.background,
     snackBarTheme: snackbarTheme,
