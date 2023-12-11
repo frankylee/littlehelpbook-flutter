@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/common/router/lhb_router.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_router.dart';
 import 'package:littlehelpbook_flutter/generated/l10n.dart';
 import 'package:littlehelpbook_flutter/theme/lhb_theme.dart';
 

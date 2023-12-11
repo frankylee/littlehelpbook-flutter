@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/ui/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/ui/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/ui/home/home_screen.dart';

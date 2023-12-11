@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/common/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/ui/assets/assets.dart';
 
 class SplashScreen extends StatefulWidget {
