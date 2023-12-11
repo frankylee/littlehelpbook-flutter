@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/data/category/category.dart';
+import 'package:littlehelpbook_flutter/pages/services/providers.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
-import 'package:littlehelpbook_flutter/ui/services/providers.dart';
 
 class ServicesList extends ConsumerWidget {
   const ServicesList({

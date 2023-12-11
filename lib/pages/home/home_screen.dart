@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/pages/home/widgets/white_bird_logo.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
-import 'package:littlehelpbook_flutter/ui/home/widgets/white_bird_logo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
