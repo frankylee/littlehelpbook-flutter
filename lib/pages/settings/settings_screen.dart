@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/data/powersync/widgets/query_widget.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/widgets/query_widget.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 
 class SettingsScreen extends StatelessWidget {

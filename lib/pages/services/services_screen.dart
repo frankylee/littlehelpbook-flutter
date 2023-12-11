@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/data/category/category.dart';
+import 'package:littlehelpbook_flutter/entities/category/category.dart';
 import 'package:littlehelpbook_flutter/pages/services/providers.dart';
 import 'package:littlehelpbook_flutter/pages/services/widgets/categories_list.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';

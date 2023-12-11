@@ -2,9 +2,9 @@
 // Credit: https://github.com/journeyapps/powersync-supabase-flutter-demo/blob/main/lib/powersync.dart
 import 'dart:io';
 
-import 'package:littlehelpbook_flutter/data/powersync/fatal_response_codes.dart';
-import 'package:littlehelpbook_flutter/data/supabase/edge_function.dart';
-import 'package:littlehelpbook_flutter/data/supabase/supabase.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/fatal_response_codes.dart';
+import 'package:littlehelpbook_flutter/entities/supabase/edge_function.dart';
+import 'package:littlehelpbook_flutter/entities/supabase/supabase.dart';
 import 'package:logging/logging.dart';
 import 'package:powersync/powersync.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

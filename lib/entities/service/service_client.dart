@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/data/category/category.dart';
-import 'package:littlehelpbook_flutter/data/powersync/powersync.dart';
-import 'package:littlehelpbook_flutter/data/service/service.dart';
+import 'package:littlehelpbook_flutter/entities/category/category.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/powersync.dart';
+import 'package:littlehelpbook_flutter/entities/service/service.dart';
 import 'package:logging/logging.dart';
 
 final serviceClientProvider = Provider((ref) => ServiceClient());

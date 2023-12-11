@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/data/category/category.dart';
-import 'package:littlehelpbook_flutter/data/category/category_client.dart';
-import 'package:littlehelpbook_flutter/data/service/service_client.dart';
+import 'package:littlehelpbook_flutter/entities/category/category.dart';
+import 'package:littlehelpbook_flutter/entities/category/category_client.dart';
+import 'package:littlehelpbook_flutter/entities/service/service_client.dart';
 
 final categoriesProvider =
     FutureProvider.autoDispose<List<Category>>((ref) async {

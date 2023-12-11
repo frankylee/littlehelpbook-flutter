@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/data/powersync/powersync.dart';
-import 'package:littlehelpbook_flutter/data/powersync/widgets/result_table.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/powersync.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/widgets/result_table.dart';
 import 'package:powersync/sqlite3.dart' as sqlite;
 import 'package:powersync/sqlite3.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/app.dart';
-import 'package:littlehelpbook_flutter/data/powersync/powersync.dart';
+import 'package:littlehelpbook_flutter/entities/powersync/powersync.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
