@@ -5,10 +5,10 @@ import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/pages/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/pages/home/home_screen.dart';
-import 'package:littlehelpbook_flutter/pages/navigation/scaffold_with_nested_navigation.dart';
 import 'package:littlehelpbook_flutter/pages/services/services_screen.dart';
 import 'package:littlehelpbook_flutter/pages/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
+import 'package:littlehelpbook_flutter/widgets/layout/scaffold_with_nested_navigation.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKeyHome = GlobalKey<NavigatorState>(debugLabel: 'homeTab');

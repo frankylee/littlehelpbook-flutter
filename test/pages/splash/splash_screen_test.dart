@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:littlehelpbook_flutter/app/app.dart';
-import 'package:littlehelpbook_flutter/pages/navigation/scaffold_with_nested_navigation.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
+import 'package:littlehelpbook_flutter/widgets/layout/scaffold_with_nested_navigation.dart';
 
 void main() {
   testWidgets("Splash screen is the initial route", (tester) async {
