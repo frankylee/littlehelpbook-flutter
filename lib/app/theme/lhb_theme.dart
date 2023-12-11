@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/theme/lhb_colors.dart';
-import 'package:littlehelpbook_flutter/theme/lhb_snackbar.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_colors.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_snackbar.dart';
 
 class LittleHelpBookTheme {
   const LittleHelpBookTheme._();
