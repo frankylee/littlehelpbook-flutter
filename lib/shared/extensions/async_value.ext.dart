@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 
 extension AsyncValueExt on AsyncValue<dynamic> {
   void showSnackbarOnError(BuildContext context, {String? message}) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/ui/assets/assets.dart';
 
 class WhiteBirdLogo extends StatelessWidget {

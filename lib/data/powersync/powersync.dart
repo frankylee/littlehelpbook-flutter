@@ -1,6 +1,6 @@
 // This file performs setup of the PowerSync database.
 // Credit: https://github.com/journeyapps/powersync-supabase-flutter-demo/blob/main/lib/powersync.dart
-import 'package:littlehelpbook_flutter/common/config/app_config.dart';
+import 'package:littlehelpbook_flutter/app/config/app_config.dart';
 import 'package:littlehelpbook_flutter/data/powersync/schema.dart';
 import 'package:littlehelpbook_flutter/data/powersync/supabase_connector.dart';
 import 'package:littlehelpbook_flutter/data/supabase/supabase.dart';

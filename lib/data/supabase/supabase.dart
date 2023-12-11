@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:littlehelpbook_flutter/common/config/app_config.dart';
+import 'package:littlehelpbook_flutter/app/config/app_config.dart';
 import 'package:logging/logging.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

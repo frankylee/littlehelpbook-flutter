@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 
 /// Bottom menu bar.
 // Stateful nested navigation based on:

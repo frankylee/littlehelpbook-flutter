@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/data/category/category.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/ui/services/widgets/services_list.dart';
 
 class CategoriesList extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/common/extensions/build_context.ext.dart';
-import 'package:littlehelpbook_flutter/common/extensions/text_style.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 
 class FindScreen extends StatelessWidget {
   const FindScreen({super.key});
