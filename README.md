@@ -7,9 +7,9 @@
 Little Help Book is a collection of providers and services in Lane County, Oregon, organized and maintained by [White Bird](https://whitebirdclinic.org). The following are White Bird's core principles:
 
 > Mission: White Bird is a collective environment organized to enable people to gain control of their social, emotional, and physical well-being through direct service, education, and community.
-
+>
 > Vision: White Bird Clinic provides compassionate, humanistic healthcare, and supportive services to individuals in our community, so everyone receives the care they need.
-
+>
 > Values: White Bird Clinic’s core values are compassion, client-centered care, community focus, individual empowerment, and service accessibility.
 
 **_Disclaimer: This is an open-source project that aims to deliver a cross-platform mobile app experience for Little Help Book. This is not an official project of White Bird._**
@@ -25,3 +25,14 @@ We use [PowerSync](https://docs.powersync.co/integration-guides/supabase-+-power
 ###### Credit: Image from PowerSync documentation.
 
 [Read more about Supabase + PowerSync architecture.](https://docs.powersync.co/integration-guides/supabase-+-powersync#architecture)
+
+
+## Feature-Sliced Design
+
+This project follows Feature-Sliced Design, an architectural methodology for frontend projects.
+
+<img src="https://feature-sliced.design/assets/ideal-img/visual_schema.b6c18f6.1030.jpg" alt="Feature-Sliced Design visual schema of layers, slices, and segments" />
+
+###### Credit: Image from Feature-Sliced Design documentation.
+
+[Read more about Feature-Sliced Design.](https://feature-sliced.design)
