@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/entities/supabase/supabase.dart';
+import 'package:littlehelpbook_flutter/shared/supabase/supabase.dart';
 
 final authServiceProvider = Provider((ref) => AuthService());
 
