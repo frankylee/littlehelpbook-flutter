@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/entities/category/category_provider.dart';
-import 'package:littlehelpbook_flutter/pages/services/widgets/categories_list.dart';
+import 'package:littlehelpbook_flutter/entities/category/widgets/categories_list.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/category.dart';
@@ -37,13 +38,12 @@ class ServicesDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
         children: [
           Card(
             color: context.colorTheme.primaryContainer,
             elevation: 0,
-            margin: EdgeInsets.zero,
+            margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             child: Padding(
               padding: EdgeInsets.all(24.0),
               child: Text(
@@ -55,7 +55,16 @@ class ServicesDataView extends StatelessWidget {
           ),
           const SizedBox(height: 24.0),
           data.isNotEmpty
-              ? CategoriesList(categories: data)
+              ? CategoriesList(
+                  categories: data,
+                  onTap: (category) => ServicesByCategoryRoute().go(
+                    context,
+                    data: ServicesByCategoryData(
+                      categoryId: category.id,
+                      categoryName: category.nameEn,
+                    ),
+                  ),
+                )
               : Center(
                   child: Text(
                     context.l10n.servicesCouldNotBeFound,
