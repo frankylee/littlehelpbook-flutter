@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/entities/service/widgets/services_list.dart';
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/pages/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/pages/home/home_screen.dart';
@@ -19,7 +20,7 @@ final _shellNavigatorKeySettings =
     GlobalKey<NavigatorState>(debugLabel: 'settingsTab');
 
 final lhbRouter = GoRouter(
-  initialLocation: const SplashRoute().path,
+  initialLocation: const SplashRoute().goPath,
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,
@@ -30,7 +31,7 @@ final lhbRouter = GoRouter(
 // https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter
 final _routes = [
   GoRoute(
-    path: const SplashRoute().path,
+    path: const SplashRoute().goPath,
     pageBuilder: (context, state) => const MaterialPage(
       child: const SplashScreen(),
     ),
@@ -44,14 +45,26 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyHome,
         routes: [
           GoRoute(
-            path: const HomeRoute().path,
+            path: const HomeRoute().goPath,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const HomeScreen(),
             ),
             routes: [
               GoRoute(
-                path: const ServiceRoute().path,
+                path: const ServiceRoute().goPath,
                 builder: (context, state) => const ServicesScreen(),
+                routes: [
+                  GoRoute(
+                    path: const ServicesByCategoryRoute().goPath,
+                    builder: (context, state) {
+                      final routeData = ServicesByCategoryData.fromState(state);
+                      return ServicesList(
+                        categoryId: routeData.categoryId,
+                        categoryName: routeData.categoryName,
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -61,7 +74,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFind,
         routes: [
           GoRoute(
-            path: const FindRoute().path,
+            path: const FindRoute().goPath,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FindScreen(),
             ),
@@ -72,7 +85,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFavorites,
         routes: [
           GoRoute(
-            path: const FavoritesRoute().path,
+            path: const FavoritesRoute().goPath,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FavoritesScreen(),
             ),
@@ -83,7 +96,7 @@ final _routes = [
         navigatorKey: _shellNavigatorKeySettings,
         routes: [
           GoRoute(
-            path: const SettingsRoute().path,
+            path: const SettingsRoute().goPath,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const SettingsScreen(),
             ),

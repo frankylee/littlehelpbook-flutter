@@ -732,10 +732,10 @@ packages:
     dependency: "direct main"
     description:
       name: simple_routes
-      sha256: f7b560c545e467e65bc3fafe01cee6ece71bd52fd50205ddca51263a2ca81677
+      sha256: "8029e7fa33db660fe7c3027f0a8b6578085f2987da2457cb22f4f75c28ae74a5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.11"
+    version: "1.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
