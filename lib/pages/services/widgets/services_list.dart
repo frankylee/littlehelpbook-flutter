@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/entities/category/category.dart';
-import 'package:littlehelpbook_flutter/pages/services/providers.dart';
+import 'package:littlehelpbook_flutter/entities/service/service_provider.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/models/category.dart';
+import 'package:littlehelpbook_flutter/shared/models/service.dart';
 
 class ServicesList extends ConsumerWidget {
   const ServicesList({
@@ -15,17 +16,17 @@ class ServicesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<AsyncValue<Category>>(
-      servicesByCategoryIdProvider(categoryId),
+    ref.listen<AsyncValue<List<Service>>>(
+      servicesStreamProvider(categoryId),
       (_, state) => state.showSnackbarOnError(context),
     );
     // TODO: This needs a lot of work and is pretty ugly right now.
     // This just proves that the services for the category exist.
-    return ref.watch(servicesByCategoryIdProvider(categoryId)).maybeWhen(
-          data: (category) => Column(
+    return ref.watch(servicesStreamProvider(categoryId)).maybeWhen(
+          data: (services) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
-            children: category.services
+            children: services
                 .map(
                   (j) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

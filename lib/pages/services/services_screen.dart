@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/entities/category/category.dart';
-import 'package:littlehelpbook_flutter/pages/services/providers.dart';
+import 'package:littlehelpbook_flutter/entities/category/category_provider.dart';
 import 'package:littlehelpbook_flutter/pages/services/widgets/categories_list.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/models/category.dart';
 
 class ServicesScreen extends ConsumerWidget {
   const ServicesScreen({super.key});
@@ -12,7 +12,7 @@ class ServicesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<AsyncValue<List<Category>>>(
-      categoriesProvider,
+      categoriesStreamProvider,
       (_, state) => state.showSnackbarOnError(context),
     );
     return Scaffold(
@@ -20,7 +20,7 @@ class ServicesScreen extends ConsumerWidget {
         centerTitle: true,
         title: Text(context.l10n.services),
       ),
-      body: ref.watch(categoriesProvider).maybeWhen(
+      body: ref.watch(categoriesStreamProvider).maybeWhen(
             data: ServicesDataView.new,
             orElse: () => Center(child: CircularProgressIndicator()),
           ),
