@@ -31,17 +31,15 @@ class ServicesByCategoryScreen extends ConsumerWidget {
       body: ref.watch(servicesStreamProvider(categoryId)).maybeWhen(
             data: (data) => ServicesList(
               services: data,
-              onTap: (service) async {
-                return ProvidersByServiceRoute().push(
-                  context,
-                  data: ProvidersByServiceData(
-                    categoryId: categoryId,
-                    categoryName: categoryName,
-                    serviceId: service.id,
-                    serviceName: service.nameEn,
-                  ),
-                );
-              },
+              onTap: (service) async => ProvidersByServiceRoute().push(
+                context,
+                data: ProvidersByServiceData(
+                  categoryId: categoryId,
+                  categoryName: categoryName,
+                  serviceId: service.id,
+                  serviceName: service.nameEn,
+                ),
+              ),
             ),
             orElse: () => Center(child: CircularProgressIndicator()),
           ),
