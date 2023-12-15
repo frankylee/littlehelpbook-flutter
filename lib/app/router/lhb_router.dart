@@ -20,7 +20,7 @@ final _shellNavigatorKeySettings =
     GlobalKey<NavigatorState>(debugLabel: 'settingsTab');
 
 final lhbRouter = GoRouter(
-  initialLocation: const SplashRoute().goPath,
+  initialLocation: const SplashRoute().fullPath(),
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,

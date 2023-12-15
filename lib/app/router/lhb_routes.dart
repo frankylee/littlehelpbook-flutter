@@ -11,9 +11,6 @@ class SplashRoute extends SimpleRoute {
 
   @override
   final String path = '/splash';
-
-  @override
-  String get goPath => path;
 }
 
 class HomeRoute extends SimpleRoute {
@@ -21,9 +18,6 @@ class HomeRoute extends SimpleRoute {
 
   @override
   final String path = '/home';
-
-  @override
-  String get goPath => path;
 }
 
 class ServiceRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
@@ -31,9 +25,6 @@ class ServiceRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
 
   @override
   final String path = 'service';
-
-  @override
-  String get goPath => path;
 
   @override
   HomeRoute get parent => const HomeRoute();
@@ -46,9 +37,6 @@ class ServicesByCategoryRoute extends DataRoute<ServicesByCategoryData>
   @override
   String get path =>
       fromSegments(['category', RouteParams.categoryName.prefixed]);
-
-  @override
-  String get goPath => path;
 
   @override
   ServiceRoute get parent => const ServiceRoute();
@@ -84,9 +72,6 @@ class FindRoute extends SimpleRoute {
 
   @override
   final String path = '/find';
-
-  @override
-  String get goPath => path;
 }
 
 class FavoritesRoute extends SimpleRoute {
@@ -94,9 +79,6 @@ class FavoritesRoute extends SimpleRoute {
 
   @override
   final String path = '/favorites';
-
-  @override
-  String get goPath => path;
 }
 
 class SettingsRoute extends SimpleRoute {
@@ -104,7 +86,4 @@ class SettingsRoute extends SimpleRoute {
 
   @override
   final String path = '/settings';
-
-  @override
-  String get goPath => path;
 }
