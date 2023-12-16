@@ -56,7 +56,10 @@ class HomeScreen extends StatelessWidget {
               ),
               trailing: Icon(Icons.chevron_right_rounded),
               enableFeedback: true,
-              onTap: () {},
+              onTap: () async => Future.delayed(
+                const Duration(milliseconds: 120),
+                () async => ProviderRoute().go(context),
+              ),
             ),
           ],
         ),

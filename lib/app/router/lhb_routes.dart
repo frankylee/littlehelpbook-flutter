@@ -20,6 +20,16 @@ class HomeRoute extends SimpleRoute {
   final String path = '/home';
 }
 
+class ProviderRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
+  const ProviderRoute();
+
+  @override
+  final String path = 'provider';
+
+  @override
+  HomeRoute get parent => const HomeRoute();
+}
+
 class ServiceRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
   const ServiceRoute();
 

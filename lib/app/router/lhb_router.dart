@@ -6,6 +6,7 @@ import 'package:littlehelpbook_flutter/entities/service/widgets/services_list.da
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/pages/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/pages/home/home_screen.dart';
+import 'package:littlehelpbook_flutter/pages/providers/providers_screen.dart';
 import 'package:littlehelpbook_flutter/pages/services/services_screen.dart';
 import 'package:littlehelpbook_flutter/pages/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
@@ -50,6 +51,10 @@ final _routes = [
               child: const HomeScreen(),
             ),
             routes: [
+              GoRoute(
+                path: const ProviderRoute().goPath,
+                builder: (context, state) => const ProvidersScreen(),
+              ),
               GoRoute(
                 path: const ServiceRoute().goPath,
                 builder: (context, state) => const ServicesScreen(),
