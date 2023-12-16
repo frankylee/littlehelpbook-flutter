@@ -2,11 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
-import 'package:littlehelpbook_flutter/entities/service/widgets/services_list.dart';
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/pages/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/pages/home/home_screen.dart';
 import 'package:littlehelpbook_flutter/pages/providers/providers_screen.dart';
+import 'package:littlehelpbook_flutter/pages/services/providers_by_service_screen.dart';
+import 'package:littlehelpbook_flutter/pages/services/services_by_category_screen.dart';
 import 'package:littlehelpbook_flutter/pages/services/services_screen.dart';
 import 'package:littlehelpbook_flutter/pages/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
@@ -63,11 +64,28 @@ final _routes = [
                     path: const ServicesByCategoryRoute().goPath,
                     builder: (context, state) {
                       final routeData = ServicesByCategoryData.fromState(state);
-                      return ServicesList(
+                      return ServicesByCategoryScreen(
                         categoryId: routeData.categoryId,
                         categoryName: routeData.categoryName,
                       );
                     },
+                    routes: [
+                      GoRoute(
+                        path: const ProvidersByServiceRoute().goPath,
+                        builder: (context, state) {
+                          final parentData =
+                              ServicesByCategoryData.fromState(state);
+                          final routeData = ProvidersByServiceData.fromState(
+                            state,
+                            parentData,
+                          );
+                          return ProvidersByServiceScreen(
+                            serviceId: routeData.serviceId,
+                            serviceName: routeData.serviceName,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

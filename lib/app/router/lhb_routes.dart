@@ -1,9 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/shared/models/category.dart';
+import 'package:littlehelpbook_flutter/shared/models/service.dart';
 import 'package:simple_routes/simple_routes.dart';
 
 enum RouteParams {
-  categoryName,
+  categoryId,
+  serviceId,
 }
 
 class SplashRoute extends SimpleRoute {
@@ -45,8 +47,7 @@ class ServicesByCategoryRoute extends DataRoute<ServicesByCategoryData>
   const ServicesByCategoryRoute();
 
   @override
-  String get path =>
-      fromSegments(['category', RouteParams.categoryName.prefixed]);
+  String get path => RouteParams.categoryId.prefixed;
 
   @override
   ServiceRoute get parent => const ServiceRoute();
@@ -60,8 +61,8 @@ class ServicesByCategoryData extends SimpleRouteData {
 
   factory ServicesByCategoryData.fromState(GoRouterState state) {
     return ServicesByCategoryData(
-      categoryId: state.getExtra<CategoryId>()!,
-      categoryName: state.getParam(RouteParams.categoryName)!,
+      categoryId: state.getParam(RouteParams.categoryId)!,
+      categoryName: state.getExtra<String>()!,
     );
   }
 
@@ -69,11 +70,55 @@ class ServicesByCategoryData extends SimpleRouteData {
   final String categoryName;
 
   @override
-  CategoryId get extra => categoryId;
+  String get extra => categoryName;
 
   @override
   Map<Enum, String> get parameters => {
-        RouteParams.categoryName: categoryName,
+        RouteParams.categoryId: categoryId,
+      };
+}
+
+class ProvidersByServiceRoute extends DataRoute<ProvidersByServiceData>
+    implements ChildRoute<ServicesByCategoryRoute> {
+  const ProvidersByServiceRoute();
+
+  @override
+  String get path => RouteParams.serviceId.prefixed;
+
+  @override
+  ServicesByCategoryRoute get parent => const ServicesByCategoryRoute();
+}
+
+class ProvidersByServiceData extends ServicesByCategoryData {
+  const ProvidersByServiceData({
+    required super.categoryId,
+    required super.categoryName,
+    required this.serviceId,
+    required this.serviceName,
+  });
+
+  factory ProvidersByServiceData.fromState(
+    GoRouterState state,
+    ServicesByCategoryData parentData,
+  ) {
+    return ProvidersByServiceData(
+      categoryId: parentData.categoryId,
+      categoryName: parentData.categoryName,
+      serviceId: state.getParam(RouteParams.serviceId)!,
+      serviceName: state.getExtra<String>()!,
+    );
+  }
+
+  final ServiceId serviceId;
+  final String serviceName;
+
+  @override
+  String get extra => serviceName;
+
+  @override
+  Map<Enum, String> get parameters => {
+        ...super.parameters,
+        RouteParams.serviceId: serviceId,
       };
 }
 

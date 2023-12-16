@@ -57,7 +57,7 @@ class ServicesDataView extends StatelessWidget {
           data.isNotEmpty
               ? CategoriesList(
                   categories: data,
-                  onTap: (category) => ServicesByCategoryRoute().go(
+                  onTap: (category) => ServicesByCategoryRoute().push(
                     context,
                     data: ServicesByCategoryData(
                       categoryId: category.id,
@@ -65,10 +65,17 @@ class ServicesDataView extends StatelessWidget {
                     ),
                   ),
                 )
-              : Center(
-                  child: Text(
-                    context.l10n.servicesCouldNotBeFound,
-                    style: context.textTheme.titleMedium,
+              : SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.25,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 48.0),
+                      child: Text(
+                        context.l10n
+                            .entityCouldNotBeFound(context.l10n.services),
+                        style: context.textTheme.titleMedium,
+                      ),
+                    ),
                   ),
                 ),
         ],
