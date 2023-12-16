@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/widgets/button/primary_button.dart';
@@ -25,8 +26,8 @@ class FavoritesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 48.0),
             PrimaryButton(
-              text: context.l10n.favorites,
-              onPressed: () {/** Sample primary button */},
+              onPressed: () => context.go('404'),
+              text: '404 Page Not Found',
             ),
           ],
         ),

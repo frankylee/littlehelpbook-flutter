@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/pages/error/page_not_found.dart';
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
 import 'package:littlehelpbook_flutter/pages/find/find_screen.dart';
 import 'package:littlehelpbook_flutter/pages/home/home_screen.dart';
@@ -26,6 +27,9 @@ final lhbRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,
+  errorPageBuilder: (context, state) => const NoTransitionPage(
+    child: PageNotFoundScreen(),
+  ),
 );
 
 // Stateful nested navigation based on:
