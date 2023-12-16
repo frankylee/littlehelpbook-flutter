@@ -1,4 +1,24 @@
 {
+  "appVersion": "v{version}",
+  "@appVersion": {
+    "description": "App version to display on the Settings screen",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "1.0.0"
+      }
+    }
+  },
+  "entityCouldNotBeFound": "{entity} could not be found at this time. Please check back later.",
+  "@entityCouldNotBeFound": {
+    "description": "Inform the user when some data model cannot be retrieved",
+    "placeholders": {
+      "entity": {
+        "type": "String",
+        "example": "Categories"
+      }
+    }
+  },
   "adjustYourSettings": "Adjust your settings to fit your needs.",
   "checkOutYourFavorites": "Checkout your favorite service providers.",
   "favorites": "Favorites",
