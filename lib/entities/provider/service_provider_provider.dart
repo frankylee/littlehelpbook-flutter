@@ -12,7 +12,6 @@ final providersStreamProvider = StreamProvider<List<ServiceProvider>>((ref) {
 final providersByServiceProvider =
     StreamProvider.family<List<ServiceProvider>, ServiceId>((ref, id) {
   return db.watch(
-    "SELECT * FROM providers WHERE services LIKE '%?%' ORDER BY name ASC",
-    parameters: [id],
+    '''SELECT * FROM providers WHERE services LIKE '%${id}%' ORDER BY name ASC''',
   ).map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
 });
