@@ -17,6 +17,13 @@ time very_good --analytics false
 echo "\n\nRunning very_good get..."
 time very_good packages get --recursive
 
+# Update CocoaPods
+echo "\n\nRunning pod install..."
+cd ios
+pod install
+cd ..
+exit_nonzero $? "Running pod install failed!" 60
+
 # Run Build Runner.
 echo "\n\nRunning flutter pub run build_runner build..."
 time fvm flutter pub run build_runner build -d 
