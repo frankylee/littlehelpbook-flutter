@@ -5,7 +5,9 @@ import 'package:littlehelpbook_flutter/entities/category/category_provider.dart'
 import 'package:littlehelpbook_flutter/entities/category/widgets/categories_list.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/category.dart';
+import 'package:littlehelpbook_flutter/widgets/gradient_container.dart';
 
 class ServicesScreen extends ConsumerWidget {
   const ServicesScreen({super.key});
@@ -40,16 +42,13 @@ class ServicesDataView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Card(
-            color: context.colorTheme.primaryContainer,
-            elevation: 0,
-            margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          GradientContainer(
+            borderRadius: BorderRadius.zero,
             child: Padding(
               padding: EdgeInsets.all(24.0),
               child: Text(
                 context.l10n.servicesExploreByCategory,
-                style: context.textTheme.titleLarge!
-                    .copyWith(color: context.colorTheme.onPrimaryContainer),
+                style: context.textTheme.titleLarge?.white,
               ),
             ),
           ),
