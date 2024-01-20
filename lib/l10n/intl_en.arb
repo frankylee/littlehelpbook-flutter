@@ -20,6 +20,7 @@
     }
   },
   "adjustYourSettings": "Adjust your settings to fit your needs.",
+  "callNow": "Call now",
   "checkOutYourFavorites": "Checkout your favorite service providers.",
   "favorites": "Favorites",
   "find": "Find",
@@ -28,9 +29,13 @@
   "findServiceProvidersInLaneCounty": "Find services and providers in Lane County.",
   "home": "Home",
   "littleHelpBook": "Little Help Book",
+  "multilingual": "Multilingual",
   "providers": "Providers",
+  "sendEmail": "Send email",
   "services": "Services",
   "servicesExploreByCategory": "Explore services by category to find providers.",
   "settings": "Settings",
-  "uhOhSomethingIsWrong": "Uh oh! Something is wrong. Please try again."
+  "uhOhSomethingIsWrong": "Uh oh! Something is wrong. Please try again.",
+  "visitWebsite": "Visit website",
+  "wheelchairAccess": "Wheelchair Access"
 }
