@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlehelpbook_flutter/entities/provider/widgets/provider_details_bottomsheet.dart';
 import 'package:littlehelpbook_flutter/shared/models/provider.dart';
 
 class ProvidersList extends ConsumerWidget {
@@ -31,7 +32,7 @@ class ProvidersList extends ConsumerWidget {
             softWrap: true,
           ),
           trailing: Icon(Icons.chevron_right_rounded),
-          onTap: () {}, // TODO: Route to Provider Detail.
+          onTap: () => ProviderDetailsBottomSheet.show(context, provider),
         );
       },
     );
