@@ -16,23 +16,26 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-          side: BorderSide(color: context.colorTheme.onSurface),
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+            side: BorderSide(color: context.colorTheme.onSurface),
+          ),
         ),
-      ),
-      child: Center(
-        child: child ??
-            Text(
-              text!,
-              style: context.textTheme.bodyLarge?.white
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
+        child: Center(
+          child: child ??
+              Text(
+                text!,
+                style: context.textTheme.bodyLarge?.white
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+        ),
       ),
     );
   }
