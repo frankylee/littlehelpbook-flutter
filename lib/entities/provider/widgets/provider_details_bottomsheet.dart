@@ -74,84 +74,75 @@ class _ProviderDetailsBottomSheetState
       ),
     );
     final isSpanish = widget.provider.descriptionEs != null;
-    return Theme(
-      data: ThemeData.dark(),
-      child: GradientContainer(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.0),
-          topRight: Radius.circular(24.0),
-        ),
-        padding: EdgeInsets.zero,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            LhbStyleConstants.pagePadding,
-            LhbStyleConstants.pagePadding,
-            LhbStyleConstants.pagePadding,
-            LhbStyleConstants.pageBottomPadding,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32.0),
-              Center(
-                child: Text(
-                  widget.provider.name,
-                  style: context.textTheme.headlineLarge?.white,
-                ),
+    return GradientContainer(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(24.0),
+        topRight: Radius.circular(24.0),
+      ),
+      padding: EdgeInsets.zero,
+      child: SingleChildScrollView(
+        padding: LhbStyleConstants.pagePaddingInsets,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 32.0),
+            Center(
+              child: Text(
+                widget.provider.name,
+                style: context.textTheme.headlineLarge?.white,
               ),
-              const SizedBox(height: 32.0),
+            ),
+            const SizedBox(height: 32.0),
+            Text(
+              widget.provider.descriptionEn,
+              style: context.textTheme.bodyLarge?.white,
+            ),
+            if (isSpanish) const SizedBox(height: 24.0),
+            if (isSpanish)
               Text(
-                widget.provider.descriptionEn,
+                widget.provider.descriptionEs!,
                 style: context.textTheme.bodyLarge?.white,
               ),
-              if (isSpanish) const SizedBox(height: 24.0),
-              if (isSpanish)
-                Text(
-                  widget.provider.descriptionEs!,
+            const SizedBox(height: 48.0),
+            if (widget.provider.website != null)
+              SecondaryButton(
+                onPressed: () => launchUrl(Uri.parse(widget.provider.website!)),
+                child: Text(
+                  context.l10n.visitWebsite,
                   style: context.textTheme.bodyLarge?.white,
                 ),
-              const SizedBox(height: 48.0),
-              if (widget.provider.website != null)
-                SecondaryButton(
-                  onPressed: () =>
-                      launchUrl(Uri.parse(widget.provider.website!)),
-                  child: Text(
-                    context.l10n.visitWebsite,
-                    style: context.textTheme.bodyLarge?.white,
-                  ),
+              ),
+            if (widget.provider.email != null)
+              SecondaryButton(
+                onPressed: () =>
+                    launchUrl(Uri.parse('mailto:${widget.provider.email!}')),
+                child: Text(
+                  context.l10n.sendEmail,
+                  style: context.textTheme.bodyLarge?.white,
                 ),
-              if (widget.provider.email != null)
-                SecondaryButton(
-                  onPressed: () =>
-                      launchUrl(Uri.parse('mailto:${widget.provider.email!}')),
-                  child: Text(
-                    context.l10n.sendEmail,
-                    style: context.textTheme.bodyLarge?.white,
-                  ),
+              ),
+            if (widget.provider.phone != null)
+              SecondaryButton(
+                onPressed: () =>
+                    launchUrl(Uri.parse('tel:${widget.provider.phone!}')),
+                child: Text(
+                  context.l10n.callNow,
+                  style: context.textTheme.bodyLarge?.white,
                 ),
-              if (widget.provider.phone != null)
-                SecondaryButton(
-                  onPressed: () =>
-                      launchUrl(Uri.parse('tel:${widget.provider.phone!}')),
-                  child: Text(
-                    context.l10n.callNow,
-                    style: context.textTheme.bodyLarge?.white,
-                  ),
+              ),
+            const SizedBox(height: 48.0),
+            ref
+                .watch(locationByServiceProviderProvider(widget.provider.id))
+                .when(
+                  data: (data) => LocationsList(locations: data),
+                  loading: () => Center(child: CircularProgressIndicator()),
+                  error: (error, stackTrace) {
+                    // TODO: Capture exception in Sentry.
+                    print('ERROR: $error $stackTrace');
+                    return const SizedBox.shrink();
+                  },
                 ),
-              const SizedBox(height: 48.0),
-              ref
-                  .watch(locationByServiceProviderProvider(widget.provider.id))
-                  .when(
-                    data: (data) => LocationsList(locations: data),
-                    loading: () => Center(child: CircularProgressIndicator()),
-                    error: (error, stackTrace) {
-                      // TODO: Capture exception in Sentry.
-                      print('ERROR: $error $stackTrace');
-                      return const SizedBox.shrink();
-                    },
-                  ),
-            ],
-          ),
+          ],
         ),
       ),
     );
