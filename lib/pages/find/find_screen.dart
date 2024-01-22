@@ -20,11 +20,10 @@ final mapStyleProvider = FutureProvider((ref) async {
 
 final validLocationsProvider = FutureProvider<List<Location>>((ref) async {
   final locations = await ref.watch(locationsStreamProvider.future);
-  // final nonNullLocations = locations
-  //     .where((element) => element.latitude != null && element.longitude != null)
-  //     .toList();
-  // return nonNullLocations;
-  return locations;
+  final nonNullLocations = locations
+      .where((element) => element.latitude != null && element.longitude != null)
+      .toList();
+  return nonNullLocations;
 });
 
 class FindScreen extends ConsumerStatefulWidget {
@@ -63,34 +62,34 @@ class FindScreenState extends ConsumerState<FindScreen> {
               layerMode: VectorTileLayerMode.vector,
             ),
             MarkerLayer(
-              // markers: ref.watch(validLocationsProvider).maybeWhen(
-              //       data: (locations) {
-              //         return locations
-              //             .map(
-              //               (location) => Marker(
-              //                 point: LatLng(
-              //                   location.latitude!,
-              //                   location.longitude!,
-              //                 ),
-              //                 child: Icon(
-              //                   Icons.business_rounded,
-              //                   color: context.colorTheme.primary,
-              //                 ),
-              //               ),
-              //             )
-              //             .toList();
-              //       },
-              //       orElse: () => [],
-              //     ),
-              markers: [
-                Marker(
-                  point: LatLng(44.0521, -123.0868),
-                  child: Icon(
-                    Icons.business_rounded,
-                    color: context.colorTheme.primary,
+              markers: ref.watch(validLocationsProvider).maybeWhen(
+                    data: (locations) {
+                      return locations
+                          .map(
+                            (location) => Marker(
+                              point: LatLng(
+                                location.latitude!,
+                                location.longitude!,
+                              ),
+                              child: Icon(
+                                Icons.business_rounded,
+                                color: context.colorTheme.primary,
+                              ),
+                            ),
+                          )
+                          .toList();
+                    },
+                    orElse: () => [],
                   ),
-                ),
-              ],
+              // markers: [
+              //   Marker(
+              //     point: LatLng(44.0521, -123.0868),
+              //     child: Icon(
+              //       Icons.business_rounded,
+              //       color: context.colorTheme.primary,
+              //     ),
+              //   ),
+              // ],
             ),
             RichAttributionWidget(
               attributions: [
@@ -104,7 +103,10 @@ class FindScreenState extends ConsumerState<FindScreen> {
             ),
           ],
         ),
-        error: (err, _) => const SizedBox.shrink(),
+        error: (err, _) {
+          print(err);
+          return const SizedBox.shrink();
+        },
         loading: () => const SizedBox.shrink(),
       ),
     );
