@@ -2,7 +2,7 @@
 
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![iOS](https://img.shields.io/badge/iOS-3DDC84?style=for-the-badge&logo=apple&logoColor=white) 
 
-![Flutter](https://img.shields.io/badge/flutter-3.13.1-blue) ![Dart](https://img.shields.io/badge/dart-3.1.0-blue)
+![Flutter](https://img.shields.io/badge/flutter-3.16.8-blue) ![Dart](https://img.shields.io/badge/dart-3.2.5-blue)
 
 Little Help Book is a collection of providers and services in Lane County, Oregon, organized and maintained by [White Bird](https://whitebirdclinic.org). The following are White Bird's core principles:
 
