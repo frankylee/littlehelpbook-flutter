@@ -12,4 +12,7 @@ abstract class AppConfig {
 
   @EnviedField(varName: 'SUPABASE_URL', obfuscate: true)
   static final String supabaseUrl = _AppConfig.supabaseUrl;
+
+  @EnviedField(varName: 'MAPBOX_API_KEY', obfuscate: true)
+  static final String mapboxApiKey = _AppConfig.mapboxApiKey;
 }
