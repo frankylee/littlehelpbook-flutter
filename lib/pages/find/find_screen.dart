@@ -19,11 +19,18 @@ final mapStyleProvider = FutureProvider((ref) async {
 });
 
 final validLocationsProvider = FutureProvider<List<Location>>((ref) async {
-  final locations = await ref.watch(locationsStreamProvider.future);
-  final nonNullLocations = locations
-      .where((element) => element.latitude != null && element.longitude != null)
-      .toList();
-  return nonNullLocations;
+  try {
+    final locations = await ref.watch(locationsStreamProvider.future);
+    final nonNullLocations = locations
+        .where(
+          (element) => element.latitude != null && element.longitude != null,
+        )
+        .toList();
+    return nonNullLocations;
+  } catch (e) {
+    print(e);
+    return [];
+  }
 });
 
 class FindScreen extends ConsumerStatefulWidget {

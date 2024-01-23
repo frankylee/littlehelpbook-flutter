@@ -27,13 +27,11 @@ class Location extends Equatable {
   factory Location.fromMap(Map<String, dynamic> data) {
     return Location(
       id: data['id'] as LocationId,
-      name: null, //data['name'] != null ? data['name'] as String : null,
-      email: null, //data['email'] as String?,
-      isAccessible:
-          true, //data['is_wheelchair_access'] as int == 1 ? true : false,
-      isMultilingual:
-          true, //data['is_multilingual'] as int == 1 ? true : false,
-      phones: null, //data['phones'] as List<String>?,
+      name: data['name']?.toString(),
+      email: data['email']?.toString(),
+      isAccessible: int.tryParse(data['is_wheelchair_access'].toString()) == 1,
+      isMultilingual: int.tryParse(data['is_multilingual'].toString()) == 1,
+      phones: data['phones']?.toString().split(","),
       addressLine1: data['address_line_1'] as String?,
       addressLine2: data['address_line_2'] as String?,
       city: data['city'] as String?,
