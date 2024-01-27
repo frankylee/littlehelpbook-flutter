@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/widgets/gradient_container.dart';
@@ -21,7 +22,10 @@ class PrimaryButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       borderRadius: BorderRadius.circular(24.0),
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: () {
+          HapticFeedback.lightImpact();
+          onPressed?.call();
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
