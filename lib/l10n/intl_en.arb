@@ -32,6 +32,7 @@
   "multilingual": "Multilingual",
   "pageNotFound": "Page Not Found",
   "providers": "Providers",
+  "searchProviders": "Search by name or keyword...",
   "sendEmail": "Send email",
   "services": "Services",
   "servicesExploreByCategory": "Explore services by category to find providers.",
