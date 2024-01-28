@@ -98,4 +98,13 @@ class ServiceProvider extends Equatable implements Comparable<ServiceProvider> {
       deletedAt: deletedAt ?? this.deletedAt,
     );
   }
+
+  /// Determine if a provider matches a search term. The term is matched against
+  /// the name and description.
+  bool isSearchResult(String searchTerm) {
+    final term = searchTerm.toUpperCase();
+    return name.toUpperCase().contains(term) ||
+        descriptionEn.toUpperCase().contains(term) ||
+        (descriptionEs != null && descriptionEs!.toUpperCase().contains(term));
+  }
 }

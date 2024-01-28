@@ -8,21 +8,27 @@ class ProvidersList extends ConsumerWidget {
     super.key,
     this.physics,
     required this.providers,
+    this.searchTerm,
     this.shrinkWrap,
   });
 
   final ScrollPhysics? physics;
-  final bool? shrinkWrap;
   final List<ServiceProvider> providers;
+  final String? searchTerm;
+  final bool? shrinkWrap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasSearchTerm = searchTerm != null && searchTerm!.isNotEmpty;
     return ListView.builder(
       itemCount: providers.length,
       physics: physics,
       shrinkWrap: shrinkWrap ?? false,
       itemBuilder: (context, index) {
         final provider = providers[index];
+        if (hasSearchTerm && !provider.isSearchResult(searchTerm!)) {
+          return const SizedBox.shrink();
+        }
         return ListTile(
           title: Text(provider.name),
           subtitle: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/entities/provider/service_provider_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/providers_list.dart';
+import 'package:littlehelpbook_flutter/features/search/providers_search_bar.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/provider.dart';
@@ -28,39 +29,65 @@ class ProvidersScreen extends ConsumerWidget {
   }
 }
 
-class ProvidersDataView extends StatelessWidget {
+class ProvidersDataView extends StatefulWidget {
   @visibleForTesting
   const ProvidersDataView(this.data, {super.key});
 
   final List<ServiceProvider> data;
 
   @override
+  State<StatefulWidget> createState() => _ProvidersDataViewState();
+}
+
+class _ProvidersDataViewState extends State<ProvidersDataView> {
+  final _searchNotifier = ValueNotifier('');
+
+  @override
+  void dispose() {
+    _searchNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 24.0),
-          data.isNotEmpty
-              ? ProvidersList(
-                  physics: NeverScrollableScrollPhysics(),
-                  providers: data,
-                  shrinkWrap: true,
-                )
-              : SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.5,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 48.0),
-                      child: Text(
-                        context.l10n
-                            .entityCouldNotBeFound(context.l10n.providers),
-                        style: context.textTheme.titleMedium,
+    return Column(
+      children: [
+        const SizedBox(height: 16.0),
+        ProviderSearchBar(searchNotifier: _searchNotifier),
+        const SizedBox(height: 16.0),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                widget.data.isNotEmpty
+                    ? ValueListenableBuilder(
+                        valueListenable: _searchNotifier,
+                        builder: (context, value, child) => ProvidersList(
+                          physics: NeverScrollableScrollPhysics(),
+                          providers: widget.data,
+                          searchTerm: value,
+                          shrinkWrap: true,
+                        ),
+                      )
+                    : SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.5,
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 48.0),
+                            child: Text(
+                              context.l10n.entityCouldNotBeFound(
+                                context.l10n.providers,
+                              ),
+                              style: context.textTheme.titleMedium,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-        ],
-      ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
