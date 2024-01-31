@@ -22,6 +22,17 @@ class HomeRoute extends SimpleRoute {
   final String path = '/home';
 }
 
+class EmergencyCrisisLinesRoute extends SimpleRoute
+    implements ChildRoute<HomeRoute> {
+  const EmergencyCrisisLinesRoute();
+
+  @override
+  final String path = 'crisis-lines';
+
+  @override
+  HomeRoute get parent => const HomeRoute();
+}
+
 class ProviderRoute extends SimpleRoute implements ChildRoute<HomeRoute> {
   const ProviderRoute();
 
