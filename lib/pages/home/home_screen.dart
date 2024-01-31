@@ -30,7 +30,24 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 60.0),
             ListTile(
               leading: CircleAvatar(
-                child: Icon(Icons.medical_services_outlined),
+                child: Icon(Icons.health_and_safety_rounded),
+              ),
+              title: Text(
+                context.l10n.emergencyCrisisLines,
+                style: context.textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+              trailing: Icon(Icons.chevron_right_rounded),
+              enableFeedback: true,
+              onTap: () async => Future.delayed(
+                const Duration(milliseconds: 120),
+                () async => EmergencyCrisisLinesRoute().go(context),
+              ),
+            ),
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.medical_services_rounded),
               ),
               title: Text(
                 context.l10n.services,
