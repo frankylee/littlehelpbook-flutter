@@ -15,3 +15,17 @@ final providersByServiceProvider =
     '''SELECT * FROM providers WHERE services LIKE '%${id}%' ORDER BY name ASC''',
   ).map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
 });
+
+final emergencyCrisisLinesProvider =
+    StreamProvider<List<ServiceProvider>>((ref) {
+  return db.watch(
+    '''SELECT * FROM providers p
+      WHERE EXISTS (
+        SELECT s.id FROM categories c
+        LEFT JOIN services s ON s.category_id = c.id
+        WHERE c.name_en = 'Crisis Lines'
+        AND p.services LIKE '%'||s.id||'%'
+      )
+      ORDER BY p.name ASC''',
+  ).map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
+});
