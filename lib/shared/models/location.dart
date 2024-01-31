@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:littlehelpbook_flutter/shared/models/provider.dart';
+import 'package:littlehelpbook_flutter/shared/utils/convert_text_to_list.dart';
 
 typedef LocationId = String;
 
@@ -10,7 +11,7 @@ class Location extends Equatable {
     this.email,
     required this.isAccessible,
     required this.isMultilingual,
-    this.phones,
+    required this.phones,
     this.addressLine1,
     this.addressLine2,
     this.city,
@@ -31,7 +32,7 @@ class Location extends Equatable {
       email: data['email']?.toString(),
       isAccessible: int.tryParse(data['is_wheelchair_access'].toString()) == 1,
       isMultilingual: int.tryParse(data['is_multilingual'].toString()) == 1,
-      phones: data['phones']?.toString().split(","),
+      phones: convertTextToList(data['phones'] as String?),
       addressLine1: data['address_line_1'] as String?,
       addressLine2: data['address_line_2'] as String?,
       city: data['city'] as String?,
@@ -51,7 +52,7 @@ class Location extends Equatable {
   final String? email;
   final bool isAccessible;
   final bool isMultilingual;
-  final List<String>? phones;
+  final List<String> phones;
   final String? addressLine1;
   final String? addressLine2;
   final String? city;
@@ -131,13 +132,19 @@ class Location extends Equatable {
   /// Format the address by combining the first and second line if the second line
   /// is short, like a suite number, and combining the city, state, and zipcode.
   List<String> formatAddress() {
-    String line1 = '$addressLine1';
-    String line3 = '$city, $state $zipCode';
-    if (addressLine2 != null && addressLine2!.length < 6) {
-      line1 += ' $addressLine2';
+    String? line1;
+    String line3 = '';
+    if (city != null && state != null) {
+      line3 = '$city, $state';
+      if (zipCode != null) line3 += ' $zipCode';
+    }
+    if (addressLine1 != null &&
+        addressLine2 != null &&
+        addressLine2!.length < 6) {
+      line1 = '$addressLine1 $addressLine2';
       return [line1, '', line3];
     }
-    return [line1, addressLine2 ?? '', line3];
+    return [addressLine1 ?? '', addressLine2 ?? '', line3];
   }
 
   bool hasAddress() {

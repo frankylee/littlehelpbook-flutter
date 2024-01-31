@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/location.dart';
 import 'package:littlehelpbook_flutter/widgets/bordered_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LocationsList extends ConsumerWidget {
   const LocationsList({
@@ -62,6 +64,30 @@ class LocationsList extends ConsumerWidget {
                             style: context.textTheme.bodyMedium?.white,
                             softWrap: true,
                           ),
+                        if (location.phones.isNotEmpty)
+                          const SizedBox(height: 12.0),
+                        ...List.generate(
+                          location.phones.length,
+                          (i) => Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  HapticFeedback.lightImpact();
+                                  launchUrl(
+                                    Uri.parse('tel:${location.phones[i]}'),
+                                  );
+                                },
+                                child: Text(
+                                  location.phones[i],
+                                  style: context.textTheme.bodyMedium?.white,
+                                  softWrap: true,
+                                ),
+                              ),
+                              if (i < location.phones.length - 1)
+                                const SizedBox(height: 12.0),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(width: 8.0),
