@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/app.dart';
+import 'package:littlehelpbook_flutter/app/toggle/lhb_feature_toggles.dart';
 import 'package:littlehelpbook_flutter/shared/powersync/powersync.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // usePathUrlStrategy();
+
+  await LHBToggles.shared.init();
 
   final app = await buildAppWithRiverpod(const LittleHelpBook());
   await openPowerSyncDatabase();
