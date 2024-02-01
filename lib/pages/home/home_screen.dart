@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
+import 'package:littlehelpbook_flutter/widgets/alert_message.dart';
 import 'package:littlehelpbook_flutter/widgets/white_bird_logo.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,11 +16,12 @@ class HomeScreen extends StatelessWidget {
         title: Text(context.l10n.littleHelpBook),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        padding: LhbStyleConstants.pagePaddingInsets,
         child: Column(
           children: [
             const SizedBox(height: 40.0),
             WhiteBirdLogo(),
+            const AlertMessage(),
             const SizedBox(height: 60.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
