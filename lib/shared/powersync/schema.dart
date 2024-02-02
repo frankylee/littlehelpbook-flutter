@@ -5,6 +5,16 @@ import 'package:powersync/powersync.dart';
 /// https://docs.powersync.co/usage/installation/client-side-setup/define-schema
 const schema = Schema(
   [
+    Table.localOnly(
+      'favorites',
+      [
+        Column.text('provider_id'),
+        Column.text('created_at'),
+      ],
+      indexes: [
+        Index('providers', [IndexedColumn('provider_id')]),
+      ],
+    ),
     Table(
       'categories',
       [
