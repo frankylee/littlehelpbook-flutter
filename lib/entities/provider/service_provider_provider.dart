@@ -16,6 +16,15 @@ final providersByServiceProvider =
   ).map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
 });
 
+final favoriteProvidersStreamProvider =
+    StreamProvider<List<ServiceProvider>>((ref) {
+  return db.watch('''
+    SELECT * FROM favorites f
+    LEFT JOIN providers p ON p.id = f.provider_id
+    ORDER BY p.name ASC
+  ''').map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
+});
+
 final emergencyCrisisLinesProvider =
     StreamProvider<List<ServiceProvider>>((ref) {
   return db.watch(
