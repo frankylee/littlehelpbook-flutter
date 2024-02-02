@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/provider_details_bottomsheet.dart';
+import 'package:littlehelpbook_flutter/features/favorite/favorite_icon_toggle.dart';
 import 'package:littlehelpbook_flutter/shared/models/provider.dart';
 
 class ProvidersList extends ConsumerWidget {
@@ -30,6 +31,7 @@ class ProvidersList extends ConsumerWidget {
           return const SizedBox.shrink();
         }
         return ListTile(
+          leading: FavoriteIconToggle(providerId: provider.id),
           title: Text(provider.name),
           subtitle: Text(
             provider.descriptionEn,
