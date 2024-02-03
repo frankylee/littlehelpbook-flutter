@@ -19,6 +19,30 @@
       }
     }
   },
+  "monthlyOnTheOrdinal": "Monthly on the {ordinal}",
+  "@monthlyOnTheOrdinal": {
+    "description": "The monthly occurrence day",
+    "placeholders": {
+      "ordinal": {
+        "type": "String",
+        "example": "1st"
+      }
+    }
+  },
+  "occurrenceOfWeekDay": "{ordinal} {weekDay}",
+  "@occurrenceOfWeekDay": {
+    "description": "The occurrence of the weekday of a month",
+    "placeholders": {
+      "ordinal": {
+        "type": "String",
+        "example": "4th"
+      },
+      "weekDay": {
+        "type": "String",
+        "example": "Saturday"
+      }
+    }
+  },
   "adjustYourSettings": "Adjust your settings to fit your needs.",
   "areYouInCrisis": "Are you in crisis?",
   "aCrisisIsDefinedBy": "A crisis is defined personally by each individual who reaches out to White Bird Clinic. It can be a difficult or dangerous time, but it is also an opportunity for change. Anxiety, depression, grief, trauma, identity issues, abuse, interpersonal conflict, and other external or internal factors can contribute to a time of crisis. If you find your ability to access your own resources is compromised by a crisis event, please reach out to us on our 24/7 crisis line at 541-687-4000 or 1-800-422-7558, or view the complete listing of phone numbers.",
@@ -31,6 +55,8 @@
   "findServiceProvidersByCategoryLocation": "Search service providers by category and location.",
   "findServiceProvidersInLaneCounty": "Find services and providers in Lane County.",
   "home": "Home",
+  "hoursOfOperationLabel": "Hours of Operation:",
+  "hoursOfOperationNotFound": "Hours of operation could not be found.",
   "littleHelpBook": "Little Help Book",
   "multilingual": "Multilingual",
   "noFavoritesYet": "You have not favorited any providers yet.",
