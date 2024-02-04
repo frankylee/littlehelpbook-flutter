@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/providers_list.dart';
 import 'package:littlehelpbook_flutter/features/favorite/favorite_provider.dart';
 import 'package:littlehelpbook_flutter/features/search/providers_search_bar.dart';
@@ -23,10 +24,17 @@ class FavoritesScreen extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: ref.watch(favoritesProvider).maybeWhen(
-              data: FavoritesScreenDataView.new,
-              orElse: () => Center(child: CircularProgressIndicator()),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: LhbStyleConstants.maxPageContentWidth,
             ),
+            child: ref.watch(favoritesProvider).maybeWhen(
+                  data: FavoritesScreenDataView.new,
+                  orElse: () => Center(child: CircularProgressIndicator()),
+                ),
+          ),
+        ),
       ),
     );
   }
