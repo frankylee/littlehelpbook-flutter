@@ -17,71 +17,76 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: LhbStyleConstants.pagePaddingInsets,
-        child: Column(
-          children: [
-            const SizedBox(height: 40.0),
-            WhiteBirdLogo(),
-            const AlertMessage(),
-            const SizedBox(height: 60.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                context.l10n.findServiceProvidersInLaneCounty,
-                style: context.textTheme.headlineSmall,
-              ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 640.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 40.0),
+                WhiteBirdLogo(),
+                const AlertMessage(),
+                const SizedBox(height: 60.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    context.l10n.findServiceProvidersInLaneCounty,
+                    style: context.textTheme.headlineSmall,
+                  ),
+                ),
+                const SizedBox(height: 60.0),
+                ListTile(
+                  leading: CircleAvatar(
+                    child: Icon(Icons.health_and_safety_rounded),
+                  ),
+                  title: Text(
+                    context.l10n.emergencyCrisisLines,
+                    style: context.textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  trailing: Icon(Icons.chevron_right_rounded),
+                  enableFeedback: true,
+                  onTap: () async => Future.delayed(
+                    const Duration(milliseconds: 120),
+                    () async => EmergencyCrisisLinesRoute().go(context),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  leading: CircleAvatar(
+                    child: Icon(Icons.medical_services_rounded),
+                  ),
+                  title: Text(
+                    context.l10n.services,
+                    style: context.textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  trailing: Icon(Icons.chevron_right_rounded),
+                  enableFeedback: true,
+                  onTap: () async => Future.delayed(
+                    const Duration(milliseconds: 120),
+                    () async => ServiceRoute().go(context),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  leading: CircleAvatar(
+                    child: Icon(Icons.business_rounded),
+                  ),
+                  title: Text(
+                    context.l10n.providers,
+                    style: context.textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  trailing: Icon(Icons.chevron_right_rounded),
+                  enableFeedback: true,
+                  onTap: () async => Future.delayed(
+                    const Duration(milliseconds: 120),
+                    () async => ProviderRoute().go(context),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 60.0),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.health_and_safety_rounded),
-              ),
-              title: Text(
-                context.l10n.emergencyCrisisLines,
-                style: context.textTheme.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              trailing: Icon(Icons.chevron_right_rounded),
-              enableFeedback: true,
-              onTap: () async => Future.delayed(
-                const Duration(milliseconds: 120),
-                () async => EmergencyCrisisLinesRoute().go(context),
-              ),
-            ),
-            Divider(),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.medical_services_rounded),
-              ),
-              title: Text(
-                context.l10n.services,
-                style: context.textTheme.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              trailing: Icon(Icons.chevron_right_rounded),
-              enableFeedback: true,
-              onTap: () async => Future.delayed(
-                const Duration(milliseconds: 120),
-                () async => ServiceRoute().go(context),
-              ),
-            ),
-            Divider(),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.business_rounded),
-              ),
-              title: Text(
-                context.l10n.providers,
-                style: context.textTheme.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              trailing: Icon(Icons.chevron_right_rounded),
-              enableFeedback: true,
-              onTap: () async => Future.delayed(
-                const Duration(milliseconds: 120),
-                () async => ProviderRoute().go(context),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
