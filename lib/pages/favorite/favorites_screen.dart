@@ -74,9 +74,7 @@ class _FavoritesScreenDataViewState extends State<FavoritesScreenDataView> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 48.0),
                     child: Text(
-                      context.l10n.entityCouldNotBeFound(
-                        context.l10n.noFavoritesYet,
-                      ),
+                      context.l10n.noFavoritesYet,
                       style: context.textTheme.titleMedium,
                     ),
                   ),
