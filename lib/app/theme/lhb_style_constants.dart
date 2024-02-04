@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LhbStyleConstants {
-  /** Breakpoints */
+  /** Breakpoints & Responsiveness */
+  static const double maxPageContentWidth = 800.0;
   static const double pageBreakpoint = 768.0;
   /** Padding and Margins */
   static const EdgeInsets pagePaddingInsets = EdgeInsets.fromLTRB(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/service_provider_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/providers_list.dart';
 import 'package:littlehelpbook_flutter/features/search/providers_search_bar.dart';
@@ -25,36 +26,42 @@ class EmergencyCrisisLinesScreen extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: Column(
-          children: [
-            ExpansionTile(
-              title: Text(
-                context.l10n.areYouInCrisis,
-                style: context.textTheme.headlineMedium?.primary(context),
-              ),
-              shape: Border.all(width: 0.0),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: LhbStyleConstants.maxPageContentWidth,
+            ),
+            child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 12.0,
+                ExpansionTile(
+                  title: Text(
+                    context.l10n.areYouInCrisis,
+                    style: context.textTheme.headlineMedium?.primary(context),
                   ),
-                  child: BorderedContainer(
-                    child: Text(
-                      context.l10n.aCrisisIsDefinedBy,
-                      softWrap: true,
-                      style: context.textTheme.bodyLarge,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 12.0,
+                      ),
+                      child: BorderedContainer(
+                        child: Text(
+                          context.l10n.aCrisisIsDefinedBy,
+                          softWrap: true,
+                          style: context.textTheme.bodyLarge,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                const SizedBox(height: 24.0),
+                ref.watch(emergencyCrisisLinesProvider).maybeWhen(
+                      data: EmergencyCrisisLinesScreenDataView.new,
+                      orElse: () => Center(child: CircularProgressIndicator()),
+                    ),
               ],
             ),
-            const SizedBox(height: 24.0),
-            ref.watch(emergencyCrisisLinesProvider).maybeWhen(
-                  data: EmergencyCrisisLinesScreenDataView.new,
-                  orElse: () => Center(child: CircularProgressIndicator()),
-                ),
-          ],
+          ),
         ),
       ),
     );
