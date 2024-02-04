@@ -35,25 +35,32 @@ class PageNotFoundScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: Colors.transparent,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: LhbStyleConstants.pagePadding,
-              ),
-              child: Text(
-                context.l10n.uhOhSomethingIsWrong,
-                style: context.textTheme.headlineMedium?.white,
-              ),
+        body: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: LhbStyleConstants.maxPageContentWidth,
             ),
-            const SizedBox(height: 48.0),
-            SecondaryButton(
-              onPressed: () => HomeRoute().go(context),
-              text: context.l10n.home,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: LhbStyleConstants.pagePadding,
+                  ),
+                  child: Text(
+                    context.l10n.uhOhSomethingIsWrong,
+                    style: context.textTheme.headlineMedium?.white,
+                  ),
+                ),
+                const SizedBox(height: 48.0),
+                SecondaryButton(
+                  onPressed: () => HomeRoute().go(context),
+                  text: context.l10n.home,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
