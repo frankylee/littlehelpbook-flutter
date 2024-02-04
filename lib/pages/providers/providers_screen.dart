@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/service_provider_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/providers_list.dart';
 import 'package:littlehelpbook_flutter/features/search/providers_search_bar.dart';
@@ -21,10 +22,17 @@ class ProvidersScreen extends ConsumerWidget {
         centerTitle: true,
         title: Text(context.l10n.providers),
       ),
-      body: ref.watch(providersStreamProvider).maybeWhen(
-            data: ProvidersDataView.new,
-            orElse: () => Center(child: CircularProgressIndicator()),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: LhbStyleConstants.maxPageContentWidth,
           ),
+          child: ref.watch(providersStreamProvider).maybeWhen(
+                data: ProvidersDataView.new,
+                orElse: () => Center(child: CircularProgressIndicator()),
+              ),
+        ),
+      ),
     );
   }
 }
