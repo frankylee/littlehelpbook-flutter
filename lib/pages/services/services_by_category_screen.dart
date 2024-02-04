@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/service/service_provider.dart';
 import 'package:littlehelpbook_flutter/entities/service/widgets/services_list.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
@@ -28,21 +29,28 @@ class ServicesByCategoryScreen extends ConsumerWidget {
         centerTitle: true,
         title: Text(categoryName),
       ),
-      body: ref.watch(servicesStreamProvider(categoryId)).maybeWhen(
-            data: (data) => ServicesList(
-              services: data,
-              onTap: (service) async => ProvidersByServiceRoute().push(
-                context,
-                data: ProvidersByServiceData(
-                  categoryId: categoryId,
-                  categoryName: categoryName,
-                  serviceId: service.id,
-                  serviceName: service.nameEn,
-                ),
-              ),
-            ),
-            orElse: () => Center(child: CircularProgressIndicator()),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: LhbStyleConstants.maxPageContentWidth,
           ),
+          child: ref.watch(servicesStreamProvider(categoryId)).maybeWhen(
+                data: (data) => ServicesList(
+                  services: data,
+                  onTap: (service) async => ProvidersByServiceRoute().push(
+                    context,
+                    data: ProvidersByServiceData(
+                      categoryId: categoryId,
+                      categoryName: categoryName,
+                      serviceId: service.id,
+                      serviceName: service.nameEn,
+                    ),
+                  ),
+                ),
+                orElse: () => Center(child: CircularProgressIndicator()),
+              ),
+        ),
+      ),
     );
   }
 }
