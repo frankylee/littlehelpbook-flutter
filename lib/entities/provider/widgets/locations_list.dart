@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/hours_of_operation.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/location.dart';
 import 'package:littlehelpbook_flutter/widgets/bordered_container.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LocationsList extends StatelessWidget {
@@ -22,7 +24,15 @@ class LocationsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (locations.isEmpty) return const SizedBox.shrink();
-    return Column(
+    return LayoutGrid(
+      columnGap: 16.0,
+      rowGap: 4.0,
+      columnSizes: getValueForScreenType(
+        context: context,
+        mobile: [100.fr],
+        tablet: [50.fr, 50.fr],
+      ),
+      rowSizes: List.generate(locations.length, (_) => auto),
       children: List.generate(
         locations.length,
         (index) {
@@ -85,11 +95,10 @@ class LocationsList extends StatelessWidget {
                   ],
                 ),
                 HoursOfOperation(location: location),
+                if (location.phones.isNotEmpty) const SizedBox(height: 16.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (location.phones.isNotEmpty)
-                      const SizedBox(height: 16.0),
                     ...List.generate(
                       location.phones.length,
                       (i) => Column(

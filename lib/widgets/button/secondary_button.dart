@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
@@ -26,6 +27,13 @@ class SecondaryButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
+          maximumSize: Size.fromWidth(
+            getValueForScreenType(
+              context: context,
+              mobile: 100.sw,
+              tablet: 60.sw,
+            ),
+          ),
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),

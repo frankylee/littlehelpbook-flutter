@@ -10,6 +10,7 @@ import 'package:littlehelpbook_flutter/shared/models/location.dart';
 import 'package:littlehelpbook_flutter/shared/models/provider.dart';
 import 'package:littlehelpbook_flutter/widgets/button/secondary_button.dart';
 import 'package:littlehelpbook_flutter/widgets/gradient_container.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
@@ -31,19 +32,21 @@ class ProviderDetailsBottomSheet extends ConsumerStatefulWidget {
   ) async {
     await WoltModalSheet.show<void>(
       context: context,
-      maxDialogWidth: 560,
-      minDialogWidth: 400,
+      maxDialogWidth: 1200,
+      minDialogWidth: 88.sh,
       minPageHeight: 0.0,
       maxPageHeight: 0.9,
       modalTypeBuilder: (context) {
-        final size = MediaQuery.of(context).size.width;
-        if (size < LhbStyleConstants.pageBreakpoint) {
-          return WoltModalType.bottomSheet;
-        } else {
+        final deviceType = getDeviceType(MediaQuery.of(context).size);
+        if (deviceType == DeviceScreenType.tablet &&
+            MediaQuery.of(context).orientation == Orientation.landscape) {
           return WoltModalType.dialog;
+        } else {
+          return WoltModalType.bottomSheet;
         }
       },
       onModalDismissedWithBarrierTap: Navigator.of(context).pop,
+      useSafeArea: MediaQuery.of(context).orientation == Orientation.landscape,
       pageListBuilder: (context) {
         return [
           WoltModalSheetPage(
@@ -83,53 +86,64 @@ class _ProviderDetailsBottomSheetState
       child: SingleChildScrollView(
         padding: LhbStyleConstants.pagePaddingInsets,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 32.0),
-            Center(
-              child: Text(
-                widget.provider.name,
-                style: context.textTheme.headlineLarge?.white,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 32.0),
+                Center(
+                  child: Text(
+                    widget.provider.name,
+                    style: context.textTheme.headlineLarge?.white,
+                  ),
+                ),
+                const SizedBox(height: 32.0),
+                Text(
+                  widget.provider.descriptionEn,
+                  style: context.textTheme.bodyLarge?.white,
+                ),
+                if (isSpanish) const SizedBox(height: 24.0),
+                if (isSpanish)
+                  Text(
+                    widget.provider.descriptionEs!,
+                    style: context.textTheme.bodyLarge?.white,
+                  ),
+              ],
             ),
-            const SizedBox(height: 32.0),
-            Text(
-              widget.provider.descriptionEn,
-              style: context.textTheme.bodyLarge?.white,
-            ),
-            if (isSpanish) const SizedBox(height: 24.0),
-            if (isSpanish)
-              Text(
-                widget.provider.descriptionEs!,
-                style: context.textTheme.bodyLarge?.white,
-              ),
             const SizedBox(height: 48.0),
-            if (widget.provider.website != null)
-              SecondaryButton(
-                onPressed: () => launchUrl(Uri.parse(widget.provider.website!)),
-                child: Text(
-                  context.l10n.visitWebsite,
-                  style: context.textTheme.bodyLarge?.white,
-                ),
-              ),
-            if (widget.provider.email != null)
-              SecondaryButton(
-                onPressed: () =>
-                    launchUrl(Uri.parse('mailto:${widget.provider.email!}')),
-                child: Text(
-                  context.l10n.sendEmail,
-                  style: context.textTheme.bodyLarge?.white,
-                ),
-              ),
-            if (widget.provider.phone != null)
-              SecondaryButton(
-                onPressed: () =>
-                    launchUrl(Uri.parse('tel:${widget.provider.phone!}')),
-                child: Text(
-                  context.l10n.callNow,
-                  style: context.textTheme.bodyLarge?.white,
-                ),
-              ),
+            Column(
+              children: [
+                if (widget.provider.website != null)
+                  SecondaryButton(
+                    onPressed: () =>
+                        launchUrl(Uri.parse(widget.provider.website!)),
+                    child: Text(
+                      context.l10n.visitWebsite,
+                      style: context.textTheme.bodyLarge?.white,
+                    ),
+                  ),
+                if (widget.provider.email != null)
+                  SecondaryButton(
+                    onPressed: () => launchUrl(
+                      Uri.parse('mailto:${widget.provider.email!}'),
+                    ),
+                    child: Text(
+                      context.l10n.sendEmail,
+                      style: context.textTheme.bodyLarge?.white,
+                    ),
+                  ),
+                if (widget.provider.phone != null)
+                  SecondaryButton(
+                    onPressed: () => launchUrl(
+                      Uri.parse('tel:${widget.provider.phone!}'),
+                    ),
+                    child: Text(
+                      context.l10n.callNow,
+                      style: context.textTheme.bodyLarge?.white,
+                    ),
+                  ),
+              ],
+            ),
             const SizedBox(height: 48.0),
             ref
                 .watch(locationByServiceProviderProvider(widget.provider.id))
