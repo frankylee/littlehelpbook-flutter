@@ -17,7 +17,7 @@ class AlertMessage extends StatelessWidget {
         BorderedContainer(
           child: Text(
             LHBToggles.alertMessage!,
-            style: context.textTheme.headlineSmall,
+            style: context.textTheme.bodyLarge,
           ),
         ),
       ],

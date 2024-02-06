@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   title: Text(
                     context.l10n.emergencyCrisisLines,
-                    style: context.textTheme.titleLarge,
+                    style: context.textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   trailing: Icon(Icons.chevron_right_rounded),
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   title: Text(
                     context.l10n.services,
-                    style: context.textTheme.titleLarge,
+                    style: context.textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   trailing: Icon(Icons.chevron_right_rounded),
@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   title: Text(
                     context.l10n.providers,
-                    style: context.textTheme.titleLarge,
+                    style: context.textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   trailing: Icon(Icons.chevron_right_rounded),

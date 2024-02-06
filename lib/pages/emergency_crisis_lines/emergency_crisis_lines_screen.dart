@@ -36,7 +36,7 @@ class EmergencyCrisisLinesScreen extends ConsumerWidget {
                 ExpansionTile(
                   title: Text(
                     context.l10n.areYouInCrisis,
-                    style: context.textTheme.headlineMedium?.primary(context),
+                    style: context.textTheme.titleLarge?.primary(context),
                   ),
                   children: [
                     Padding(
@@ -48,7 +48,7 @@ class EmergencyCrisisLinesScreen extends ConsumerWidget {
                         child: Text(
                           context.l10n.aCrisisIsDefinedBy,
                           softWrap: true,
-                          style: context.textTheme.bodyLarge,
+                          style: context.textTheme.bodyMedium,
                         ),
                       ),
                     ),
