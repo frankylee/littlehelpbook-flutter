@@ -1,10 +1,10 @@
 import 'package:growthbook_sdk_flutter/growthbook_sdk_flutter.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
 
-class LHBToggles {
+class LhbToggles {
   late final GrowthBookSDK _client;
 
-  static final shared = LHBToggles();
+  static final shared = LhbToggles();
 
   static final String? alertMessage =
       shared._getValue('alert-message') as String?;

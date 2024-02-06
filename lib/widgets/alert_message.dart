@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:littlehelpbook_flutter/app/toggle/lhb_feature_toggles.dart';
+import 'package:littlehelpbook_flutter/app/toggle/lhb_toggles.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/widgets/bordered_container.dart';
 
@@ -8,7 +8,7 @@ class AlertMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (LHBToggles.alertMessage == null || LHBToggles.alertMessage!.isEmpty) {
+    if (LhbToggles.alertMessage == null || LhbToggles.alertMessage!.isEmpty) {
       return const SizedBox.shrink();
     }
     return Column(
@@ -16,7 +16,7 @@ class AlertMessage extends StatelessWidget {
         const SizedBox(height: 48.0),
         BorderedContainer(
           child: Text(
-            LHBToggles.alertMessage!,
+            LhbToggles.alertMessage!,
             style: context.textTheme.bodyLarge,
           ),
         ),
