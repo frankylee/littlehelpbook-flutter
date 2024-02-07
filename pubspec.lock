@@ -553,7 +553,7 @@ packages:
     source: hosted
     version: "2.3.1"
   growthbook_sdk_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: growthbook_sdk_flutter
       sha256: "9fce01ec443b6500a3ae55079363f9a3c7d2b3d03c790cacd563a73c0eb124d8"
@@ -1229,6 +1229,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  uptech_growthbook_sdk_flutter:
+    dependency: "direct main"
+    description:
+      name: uptech_growthbook_sdk_flutter
+      sha256: "273fd886ba095c67302b0444f10b566d4ffb1a5ced4fb219e956e7971f873dd0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   url_launcher:
     dependency: "direct main"
     description:

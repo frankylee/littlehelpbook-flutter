@@ -1,39 +1,20 @@
-import 'package:growthbook_sdk_flutter/growthbook_sdk_flutter.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
+import 'package:uptech_growthbook_sdk_flutter/uptech_growthbook_sdk_flutter.dart';
 
-class LhbToggles {
-  late final GrowthBookSDK _client;
+class LhbToggles extends UptechGrowthBookWrapper {
+  LhbToggles()
+      : super(
+          apiHost: AppConfig.growthBookHost,
+          clientKey: AppConfig.growthBookApiKey,
+        );
 
   static final shared = LhbToggles();
 
-  static final String? alertMessage =
-      shared._getValue('alert-message') as String?;
+  static String? get alertMessage => shared.value('alert-message') as String?;
 
-  Future<void> init({
-    Map<String, dynamic>? attributes,
-  }) async {
-    final host = AppConfig.growthBookHost.endsWith('/')
-        ? AppConfig.growthBookHost
-        : '${AppConfig.growthBookHost}/';
-    if (!AppConfig.growthBookHost.endsWith('/'))
-      _client = await GBSDKBuilderApp(
-        apiKey: AppConfig.growthBookApiKey,
-        attributes: attributes,
-        hostURL: host,
-        growthBookTrackingCallBack: (gbExperiment, gbExperimentResult) {},
-      ).initialize();
-    _client.refresh();
-  }
+  static String get appVersionHard =>
+      shared.value('app-version-hard') as String;
 
-  Future<void> refresh() async {
-    return _client.refresh();
-  }
-
-  dynamic _getValue(String featureId) {
-    return shared._client.feature(featureId).value;
-  }
-
-  bool _isOn(String featureId) {
-    return shared._client.feature(featureId).on ?? false;
-  }
+  static String get appVersionSoft =>
+      shared.value('app-version-soft') as String;
 }
