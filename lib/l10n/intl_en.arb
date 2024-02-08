@@ -67,7 +67,12 @@
   "services": "Services",
   "servicesExploreByCategory": "Explore services by category to find providers.",
   "settings": "Settings",
+  "timeForAnUpdate": "It's time for an update.",
   "uhOhSomethingIsWrong": "Uh oh! Something is wrong. Please try again.",
+  "updateLater": "I'll update later",
+  "updateNow": "I'm ready to update!",
+  "updateYourAppVersion": "Update your app version to get the latest features and bug fixes.",
   "visitWebsite": "Visit website",
+  "welcomeBack": "Welcome back!",
   "wheelchairAccess": "Wheelchair Access"
 }
