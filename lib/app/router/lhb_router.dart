@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
+import 'package:littlehelpbook_flutter/pages/app_update/app_update.dart';
 import 'package:littlehelpbook_flutter/pages/emergency_crisis_lines/emergency_crisis_lines_screen.dart';
 import 'package:littlehelpbook_flutter/pages/error/page_not_found.dart';
 import 'package:littlehelpbook_flutter/pages/favorite/favorites_screen.dart';
@@ -41,6 +42,12 @@ final _routes = [
     path: const SplashRoute().goPath,
     pageBuilder: (context, state) => const MaterialPage(
       child: const SplashScreen(),
+    ),
+  ),
+  GoRoute(
+    path: const AppUpdateRoute().goPath,
+    pageBuilder: (context, state) => const NoTransitionPage(
+      child: const AppUpdateScreen(),
     ),
   ),
   StatefulShellRoute.indexedStack(

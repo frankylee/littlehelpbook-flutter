@@ -5,6 +5,7 @@ import 'package:simple_routes/simple_routes.dart';
 
 enum RouteParams {
   categoryId,
+  isHardUpdate,
   serviceId,
 }
 
@@ -13,6 +14,13 @@ class SplashRoute extends SimpleRoute {
 
   @override
   final String path = '/splash';
+}
+
+class AppUpdateRoute extends SimpleRoute {
+  const AppUpdateRoute();
+
+  @override
+  final String path = '/app-update';
 }
 
 class HomeRoute extends SimpleRoute {
