@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/toggle/lhb_toggles.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
 
 enum AppUpdateEnum {
   current,
@@ -18,7 +18,7 @@ final appUpdateProvider =
 class AppUpdateNotifier extends AsyncNotifier<AppUpdateEnum> {
   @override
   FutureOr<AppUpdateEnum> build() async {
-    final currentVersion = (await PackageInfo.fromPlatform()).version;
+    final currentVersion = await ref.read(appVersionProvider.future);
     if (!_isSupported(currentVersion, LhbToggles.appVersionHard)) {
       return AppUpdateEnum.hardUpdate;
     }
