@@ -4,40 +4,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/toggle/lhb_toggles.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-enum AppVersionEnum {
+enum AppUpdateEnum {
   current,
   hardUpdate,
   softUpdate,
 }
 
-final appVersionProvider =
-    AsyncNotifierProvider<AppVersionNotifier, AppVersionEnum>(
-  AppVersionNotifier.new,
+final appUpdateProvider =
+    AsyncNotifierProvider<AppUpdateNotifier, AppUpdateEnum>(
+  AppUpdateNotifier.new,
 );
 
-class AppVersionNotifier extends AsyncNotifier<AppVersionEnum> {
+class AppUpdateNotifier extends AsyncNotifier<AppUpdateEnum> {
   @override
-  FutureOr<AppVersionEnum> build() async {
+  FutureOr<AppUpdateEnum> build() async {
     final currentVersion = (await PackageInfo.fromPlatform()).version;
     if (!_isSupported(currentVersion, LhbToggles.appVersionHard)) {
-      return AppVersionEnum.hardUpdate;
+      return AppUpdateEnum.hardUpdate;
     }
     if (!_isSupported(currentVersion, LhbToggles.appVersionSoft)) {
-      return AppVersionEnum.softUpdate;
+      return AppUpdateEnum.softUpdate;
     }
-    return AppVersionEnum.current;
+    return AppUpdateEnum.current;
   }
 
   bool isHardUpdate() {
     return state.maybeWhen(
-      data: (data) => data == AppVersionEnum.hardUpdate,
+      data: (data) => data == AppUpdateEnum.hardUpdate,
       orElse: () => false,
     );
   }
 
   bool isSoftUpdate() {
     return state.maybeWhen(
-      data: (data) => data == AppVersionEnum.softUpdate,
+      data: (data) => data == AppUpdateEnum.softUpdate,
       orElse: () => false,
     );
   }

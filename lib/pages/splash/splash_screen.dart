@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
-import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
+import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
 import 'package:littlehelpbook_flutter/shared/assets/assets.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -56,10 +56,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   Future<void> _redirect() async {
     // If the app has an update, redirect to App Update screen. Otherwise, go Home.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(appVersionProvider.future).then(
+      ref.read(appUpdateProvider.future).then(
             (value) async => await Future.delayed(
               Duration(seconds: 2),
-              () => value == AppVersionEnum.current
+              () => value == AppUpdateEnum.current
                   ? const HomeRoute().go(context)
                   : const AppUpdateRoute().go(context),
             ),

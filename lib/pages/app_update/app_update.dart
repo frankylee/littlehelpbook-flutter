@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
-import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
+import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
 import 'package:littlehelpbook_flutter/widgets/button/secondary_button.dart';
@@ -14,7 +14,7 @@ class AppUpdateScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // The Splash Screen loads the provider, so we know we can require the value.
-    final appVersion = ref.watch(appVersionProvider).requireValue;
+    final appVersion = ref.watch(appUpdateProvider).requireValue;
     return GradientContainer(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(24.0),
@@ -25,7 +25,7 @@ class AppUpdateScreen extends ConsumerWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           actions: [
-            if (appVersion != AppVersionEnum.hardUpdate)
+            if (appVersion != AppUpdateEnum.hardUpdate)
               IconButton(
                 padding: const EdgeInsets.all(0),
                 color: Colors.white,
@@ -60,9 +60,9 @@ class AppUpdateScreen extends ConsumerWidget {
                     text: context.l10n.updateNow,
                     onPressed: () {/** TODO: Launch App Store */},
                   ),
-                  if (appVersion != AppVersionEnum.hardUpdate)
+                  if (appVersion != AppUpdateEnum.hardUpdate)
                     const SizedBox(width: 16.0),
-                  if (appVersion != AppVersionEnum.hardUpdate)
+                  if (appVersion != AppUpdateEnum.hardUpdate)
                     Center(
                       child: TextButton(
                         child: Text(

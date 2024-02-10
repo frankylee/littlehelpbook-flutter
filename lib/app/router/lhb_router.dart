@@ -15,7 +15,7 @@ import 'package:littlehelpbook_flutter/pages/services/services_by_category_scree
 import 'package:littlehelpbook_flutter/pages/services/services_screen.dart';
 import 'package:littlehelpbook_flutter/pages/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
-import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
+import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
 import 'package:littlehelpbook_flutter/widgets/layout/scaffold_with_nested_navigation.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -40,8 +40,8 @@ final lhbRouter = GoRouter(
     // for users who do not quit/relaunch the application.
     if (state.fullPath == SplashRoute().fullPath()) return null;
     final container = ProviderScope.containerOf(context);
-    final appVersion = await container.read(appVersionProvider.future);
-    if (appVersion == AppVersionEnum.hardUpdate) {
+    final appVersion = await container.read(appUpdateProvider.future);
+    if (appVersion == AppUpdateEnum.hardUpdate) {
       return AppUpdateRoute().goPath;
     }
     return null;

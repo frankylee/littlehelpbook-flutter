@@ -4,11 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:littlehelpbook_flutter/app/app.dart';
 import 'package:littlehelpbook_flutter/pages/app_update/app_update.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
-import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
+import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
 import 'package:littlehelpbook_flutter/widgets/layout/scaffold_with_nested_navigation.dart';
 
 import '../../app/toggle/lhb_toggles.dart';
-import '../../shared/app_version/app_version_provider.dart';
+import '../../shared/app_version/app_update_provider.dart';
 
 void main() {
   final appVersionHard = 'app-version-hard';
@@ -49,8 +49,8 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            appVersionProvider.overrideWith(
-              () => SoftAppVersionNotifierMock(),
+            appUpdateProvider.overrideWith(
+              () => SoftAppUpdateNotifierMock(),
             ),
           ],
           child: TickerMode(enabled: false, child: LittleHelpBook()),
@@ -81,8 +81,8 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            appVersionProvider.overrideWith(
-              () => HardAppVersionNotifierMock(),
+            appUpdateProvider.overrideWith(
+              () => HardAppUpdateNotifierMock(),
             ),
           ],
           child: TickerMode(enabled: false, child: LittleHelpBook()),
