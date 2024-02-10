@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/shared/app_version/app_version_provider.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
+import 'package:littlehelpbook_flutter/widgets/app_version.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.colorTheme.inversePrimary,
         title: Text(context.l10n.settings),
       ),
       body: Padding(
@@ -25,15 +23,7 @@ class SettingsScreen extends ConsumerWidget {
               style: context.textTheme.headlineLarge?.primary(context),
             ),
             const SizedBox(height: 48.0),
-            ref.watch(appVersionProvider).maybeWhen(
-                  data: (version) => Center(
-                    child: Text(
-                      context.l10n.appVersion(version),
-                      style: context.textTheme.bodySmall,
-                    ),
-                  ),
-                  orElse: () => const SizedBox.shrink(),
-                ),
+            AppVersion(),
           ],
         ),
       ),
