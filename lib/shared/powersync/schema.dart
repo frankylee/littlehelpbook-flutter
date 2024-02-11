@@ -15,6 +15,14 @@ const schema = Schema(
         Index('providers', [IndexedColumn('provider_id')]),
       ],
     ),
+    Table.localOnly(
+      'user_preferences',
+      [
+        Column.text('app_theme'),
+        Column.text('created_at'),
+        Column.text('updated_at'),
+      ],
+    ),
     Table(
       'categories',
       [
