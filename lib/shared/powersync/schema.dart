@@ -19,6 +19,7 @@ const schema = Schema(
       'user_preferences',
       [
         Column.text('app_theme'),
+        Column.text('locale'),
         Column.text('created_at'),
         Column.text('updated_at'),
       ],

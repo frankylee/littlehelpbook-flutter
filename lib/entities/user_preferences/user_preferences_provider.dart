@@ -34,11 +34,7 @@ class UserPreferencesNotifier extends AsyncNotifier<UserPreferences> {
     // If the preferences have not yet been created, create with default values.
     if (result == null) {
       await _insert();
-      return UserPreferences(
-        id: userId,
-        appTheme: ThemeMode.system,
-        createdAt: DateTime.now().toIso8601String(),
-      );
+      return UserPreferences.withDefault(userId);
     }
     // Otherwise return the user's preferences.
     return UserPreferences.fromMap(result);
@@ -53,10 +49,19 @@ class UserPreferencesNotifier extends AsyncNotifier<UserPreferences> {
     await update((state) => state.copyWith(appTheme: theme));
   }
 
+  Future<void> updateLocale(Locale locale) async {
+    await db.execute('''
+      UPDATE user_preferences 
+      SET locale = '${locale.languageCode}', updated_at = datetime()
+      WHERE id = '$userId'
+    ''');
+    await update((state) => state.copyWith(locale: locale));
+  }
+
   Future<void> _insert() async {
     await db.execute('''
-      INSERT INTO user_preferences(id, app_theme, created_at, updated_at)
-      VALUES('${userId}', '${ThemeMode.system.name}', datetime(), datetime())
+      INSERT INTO user_preferences(id, app_theme, locale, created_at, updated_at)
+      VALUES('${userId}', '${ThemeMode.system.name}', 'en', datetime(), datetime())
     ''');
   }
 }
