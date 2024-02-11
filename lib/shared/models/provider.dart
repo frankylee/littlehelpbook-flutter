@@ -99,6 +99,10 @@ class ServiceProvider extends Equatable implements Comparable<ServiceProvider> {
     );
   }
 
+  String getDescription(bool isEn) {
+    return isEn ? descriptionEn : descriptionEs ?? descriptionEn;
+  }
+
   /// Determine if a provider matches a search term. The term is matched against
   /// the name and description.
   bool isSearchResult(String searchTerm) {

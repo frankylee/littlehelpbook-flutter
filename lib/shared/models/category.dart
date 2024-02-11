@@ -66,4 +66,12 @@ class Category extends Equatable implements Comparable<Category> {
       deletedAt: deletedAt ?? this.deletedAt,
     );
   }
+
+  String getNamePrimary(bool isEn) {
+    return isEn ? nameEn : nameEs ?? nameEn;
+  }
+
+  String getNameSecondary(bool isEn) {
+    return isEn ? nameEs ?? nameEn : nameEn;
+  }
 }
