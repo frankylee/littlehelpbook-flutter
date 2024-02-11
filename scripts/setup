@@ -1,5 +1,27 @@
 #!/usr/bin/env zsh
 
+# usage: bad_msg "some bad message"
+# $?: return code, 0 = success, non-zero = failure
+# stdout: the message with formatting to communicate it is bad
+bad_msg() {
+  msg=$1
+  echo -e "\e[1;31m \n${msg}\n \e[0m"
+}
+
+# Display the given <msg> as a failure message & exit the script with the
+# given <exit-code> if the provided <result-to-evaluate> is NOT 0.
+#
+# usage: exit_nonzero <result-to-evaluate> <msg> <exit-code>
+exit_nonzero() {
+  result_to_evaluate=$1
+  msg=$2
+  exit_code=$3
+  if [ $result_to_evaluate -ne 0 ]; then
+    bad_msg ${msg}
+    exit ${exit_code}
+  fi
+}
+
 flavor=${1:-dev}
 
 echo "\nSetting up $flavor flavor..."
@@ -8,36 +30,38 @@ echo "\nSetting up $flavor flavor..."
 echo "\n\nRunning fvm flutter clean..."
 time fvm flutter clean
 
+# Pull in .env from Doppler based on config flavor
+echo "\n\nPull secrets from Doppler..."
+doppler secrets substitute .env_doppler --output .env --config $flavor
+exit_nonzero $? "fetch_env from Dopper $flavor failed" 5
+
 echo "\n\nRunning fvm dart pub global activate very_good_cli..."
 time dart pub global activate very_good_cli
 time export PATH="$PATH":"$HOME/.pub-cache/bin"
-time very_good --analytics false
 
 # Update dependencies based on any changes in the pubspec.yaml
 echo "\n\nRunning very_good get..."
 time very_good packages get --recursive
-
-# Update CocoaPods
-echo "\n\nRunning pod install..."
-cd ios
-pod install
-cd ..
-exit_nonzero $? "Running pod install failed!" 60
+exit_nonzero $? "fetch pub packages failed" 10
 
 # Run Build Runner.
 echo "\n\nRunning flutter pub run build_runner build..."
 time fvm flutter pub run build_runner build -d 
+exit_nonzero $? "Build Runner failed" 20
 
 # Generate localization files
 echo "\n\nRunning flutter gen-l10n..."
 fvm flutter pub run intl_utils:generate
+exit_nonzero $? "Generate l10n failed" 30
 
 # Make sure format is good
 echo "\n\nRunning dart format ..."
 time fvm dart format .
+exit_nonzero $? "Dart Format failed" 40
 
 # Make sure code is good
 echo "\n\nRunning flutter analyze..."
 time fvm flutter analyze .
+exit_nonzero $? "Flutter Analyze failed" 50
 
 exit 0
