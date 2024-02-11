@@ -32,7 +32,7 @@ time fvm flutter clean
 
 # Pull in .env from Doppler based on config flavor
 echo "\n\nPull secrets from Doppler..."
-doppler secrets substitute .env_doppler --output .env --config $flavor
+doppler secrets substitute .env_doppler --output .env --project littlehelpbook-flutter --config $flavor
 exit_nonzero $? "fetch_env from Dopper $flavor failed" 5
 
 echo "\n\nRunning fvm dart pub global activate very_good_cli..."
