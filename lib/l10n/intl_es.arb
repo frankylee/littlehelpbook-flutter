@@ -1,0 +1,86 @@
+{
+  "@@locale": "es",
+  "appVersion": "v{version}",
+  "@appVersion": {
+    "description": "App version to display on the Settings screen",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "1.0.0"
+      }
+    }
+  },
+  "entityCouldNotBeFound": "{entity} no se pudo encontrar en este momento. Por favor, vuelva más tarde.",
+  "@entityCouldNotBeFound": {
+    "description": "Inform the user when some data model cannot be retrieved",
+    "placeholders": {
+      "entity": {
+        "type": "String",
+        "example": "Categories"
+      }
+    }
+  },
+  "monthlyOnTheOrdinal": "Mensualmente el día {ordinal}",
+  "@monthlyOnTheOrdinal": {
+    "description": "The monthly occurrence day",
+    "placeholders": {
+      "ordinal": {
+        "type": "String",
+        "example": "1st"
+      }
+    }
+  },
+  "occurrenceOfWeekDay": "{ordinal} {weekDay}",
+  "@occurrenceOfWeekDay": {
+    "description": "The occurrence of the weekday of a month",
+    "placeholders": {
+      "ordinal": {
+        "type": "String",
+        "example": "4th"
+      },
+      "weekDay": {
+        "type": "String",
+        "example": "Saturday"
+      }
+    }
+  },
+  "adjustYourSettings": "Ajuste su configuración para satisfacer sus necesidades.",
+  "appTheme": "Tema",
+  "areYouInCrisis": "¿Estás en crisis?",
+  "aCrisisIsDefinedBy": "Una crisis la define personalmente cada individuo que acude a White Bird Clinic. Puede ser un momento difícil o peligroso, pero también es una oportunidad para el cambio. La ansiedad, la depresión, el duelo, el trauma, los problemas de identidad, el abuso, los conflictos interpersonales y otros factores externos o internos pueden contribuir a un momento de crisis. Si descubre que su capacidad para acceder a sus propios recursos se ve comprometida por un evento de crisis, comuníquese con nosotros a través de nuestra línea de crisis disponible las 24 horas, los 7 días de la semana al 541-687-4000 o 1-800-422-7558, o vea la lista completa de números de teléfono.",
+  "callNow": "Llama ahora",
+  "checkOutYourFavorites": "Consulte sus proveedores de servicios favoritos.",
+  "emergencyCrisisLines": "Líneas de Crisis de Emergencia",
+  "english": "English",
+  "favorites": "Favoritos",
+  "find": "Encontrar",
+  "findServiceProviders": "Buscar proveedores de servicios",
+  "findServiceProvidersByCategoryLocation": "Busque proveedores de servicios por categoría y ubicación.",
+  "findServiceProvidersInLaneCounty": "Encuentre servicios y proveedores en Lane County.",
+  "home": "Hogar",
+  "hoursOfOperationLabel": "Horas de Operación:",
+  "hoursOfOperationNotFound": "No se pudieron encontrar los horarios de atención.",
+  "language": "Lenguaje",
+  "littleHelpBook": "Little Help Book",
+  "multilingual": "Plurilingüe",
+  "noFavoritesYet": "Aún no has marcado ningún proveedor como favorito.",
+  "pageNotFound": "Página No Encontrada",
+  "providers": "Proveedores",
+  "searchProviders": "Buscar por nombre o palabra clave...",
+  "sendEmail": "Enviar correo electrónico",
+  "services": "Servicios",
+  "servicesExploreByCategory": "Explorar servicios por categoría para encontrar proveedores.",
+  "settings": "Ajustes",
+  "spanish": "Español",
+  "themeModeDark": "Oscura",
+  "themeModeLight": "Ligera",
+  "themeModeSystem": "Sistema",
+  "timeForAnUpdate": "Es hora de una actualización.",
+  "uhOhSomethingIsWrong": "¡Uh oh! Algo está mal. Inténtalo de nuevo.",
+  "updateLater": "Estoy actualizado más tarde",
+  "updateNow": "Estoy listo para actualizar!",
+  "updateYourAppVersion": "Actualice la versión de su aplicación para obtener las últimas funciones y correcciones de errores.",
+  "visitWebsite": "Visita el sitio web",
+  "welcomeBack": "¡Bienvenido de nuevo!",
+  "wheelchairAccess": "Acceso en silla de ruedas"
+}

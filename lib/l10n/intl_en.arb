@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "appVersion": "v{version}",
   "@appVersion": {
     "description": "App version to display on the Settings screen",
@@ -50,6 +51,7 @@
   "callNow": "Call now",
   "checkOutYourFavorites": "Checkout your favorite service providers.",
   "emergencyCrisisLines": "Emergency Crisis Lines",
+  "english": "English",
   "favorites": "Favorites",
   "find": "Find",
   "findServiceProviders": "Find Service Providers",
@@ -58,6 +60,7 @@
   "home": "Home",
   "hoursOfOperationLabel": "Hours of Operation:",
   "hoursOfOperationNotFound": "Hours of operation could not be found.",
+  "language": "Language",
   "littleHelpBook": "Little Help Book",
   "multilingual": "Multilingual",
   "noFavoritesYet": "You have not favorited any providers yet.",
@@ -68,6 +71,7 @@
   "services": "Services",
   "servicesExploreByCategory": "Explore services by category to find providers.",
   "settings": "Settings",
+  "spanish": "Español",
   "themeModeDark": "Dark",
   "themeModeLight": "Light",
   "themeModeSystem": "System",
