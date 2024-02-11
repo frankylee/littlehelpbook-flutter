@@ -16,6 +16,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_layout_grid: ^2.0.5
+  flutter_localizations:
+    sdk: flutter
   flutter_map: ^6.1.0
   flutter_map_animations: ^0.5.3
   flutter_map_cancellable_tile_provider: ^2.0.0
