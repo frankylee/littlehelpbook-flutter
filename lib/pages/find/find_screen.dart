@@ -90,9 +90,26 @@ class FindScreenState extends ConsumerState<FindScreen>
                                   location.latitude!,
                                   location.longitude!,
                                 ),
-                                child: Icon(
-                                  Icons.business_rounded,
-                                  color: context.colorTheme.primary,
+                                child: GestureDetector(
+                                  onTap: () => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        "Selected Location: ${location.toString()}",
+                                      ),
+                                    ),
+                                  ),
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color:
+                                          context.colorTheme.primaryContainer,
+                                    ),
+                                    child: Icon(
+                                      Icons.health_and_safety,
+                                      color: context.colorTheme.primary,
+                                    ),
+                                  ),
                                 ),
                               ),
                             )
