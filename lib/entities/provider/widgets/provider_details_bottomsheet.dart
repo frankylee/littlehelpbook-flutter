@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/location_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/locations_list.dart';
+import 'package:littlehelpbook_flutter/entities/user_preferences/user_preferences_provider.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
@@ -76,7 +77,8 @@ class _ProviderDetailsBottomSheetState
         message: '${widget.provider.name} locations could not be retrieved',
       ),
     );
-    final isSpanish = widget.provider.descriptionEs != null;
+    ref.watch(userPreferencesProvider);
+    final isEn = ref.read(userPreferencesProvider.notifier).isEn();
     return GradientContainer(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(24.0),
@@ -104,15 +106,9 @@ class _ProviderDetailsBottomSheetState
                     ),
                     const SizedBox(height: 32.0),
                     Text(
-                      widget.provider.descriptionEn,
+                      widget.provider.getDescription(isEn),
                       style: context.textTheme.bodyLarge?.white,
                     ),
-                    if (isSpanish) const SizedBox(height: 24.0),
-                    if (isSpanish)
-                      Text(
-                        widget.provider.descriptionEs!,
-                        style: context.textTheme.bodyLarge?.white,
-                      ),
                   ],
                 ),
                 const SizedBox(height: 48.0),

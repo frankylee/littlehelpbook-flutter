@@ -40,6 +40,12 @@ class UserPreferencesNotifier extends AsyncNotifier<UserPreferences> {
     return UserPreferences.fromMap(result);
   }
 
+  bool isEn() {
+    return state.valueOrNull == null
+        ? true
+        : state.value!.locale.languageCode == 'en';
+  }
+
   Future<void> updateAppTheme(ThemeMode theme) async {
     await db.execute('''
       UPDATE user_preferences 
