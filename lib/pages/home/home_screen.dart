@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
-import 'package:littlehelpbook_flutter/widgets/alert_message.dart';
+import 'package:littlehelpbook_flutter/widgets/alerts/alert_message.dart';
 import 'package:littlehelpbook_flutter/widgets/white_bird_logo.dart';
 
 class HomeScreen extends StatelessWidget {

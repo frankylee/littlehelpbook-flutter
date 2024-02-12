@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_router.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_theme.dart';
+import 'package:littlehelpbook_flutter/app/toggle/refresh_toggles_provider.dart';
 import 'package:littlehelpbook_flutter/entities/user_preferences/user_preferences_provider.dart';
 import 'package:littlehelpbook_flutter/generated/l10n.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -12,6 +13,8 @@ class LittleHelpBook extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Initialize the refresh toggles timer.
+    ref.listen(refreshTogglesProvider, (_, __) {});
     final (appThemeMode, localePref) =
         ref.watch(userPreferencesProvider).maybeWhen(
               data: (data) => (data.appTheme, data.locale),
