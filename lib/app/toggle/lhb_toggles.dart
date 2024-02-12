@@ -13,8 +13,16 @@ class LhbToggles extends UptechGrowthBookWrapper {
   static String? get alertMessage => shared.value('alert-message') as String?;
 
   static String get appVersionHard =>
-      shared.value('app-version-hard') as String;
+      shared.value('app-version-hard') as String? ?? "1.0.0";
 
   static String get appVersionSoft =>
-      shared.value('app-version-soft') as String;
+      shared.value('app-version-soft') as String? ?? "1.0.0";
+
+  static double get sentryProfilesSampleRate =>
+      double.tryParse(shared.value('sentry-profiles-sample-rate') as String) ??
+      1.0;
+
+  static double get sentryTracesSampleRate =>
+      double.tryParse(shared.value('sentry-traces-sample-rate') as String) ??
+      1.0;
 }
