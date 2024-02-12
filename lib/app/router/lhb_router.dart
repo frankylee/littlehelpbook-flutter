@@ -17,6 +17,7 @@ import 'package:littlehelpbook_flutter/pages/settings/settings_screen.dart';
 import 'package:littlehelpbook_flutter/pages/splash/splash_screen.dart';
 import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
 import 'package:littlehelpbook_flutter/widgets/layout/scaffold_with_nested_navigation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKeyHome = GlobalKey<NavigatorState>(debugLabel: 'homeTab');
@@ -31,9 +32,10 @@ final lhbRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,
-  errorPageBuilder: (context, state) => const NoTransitionPage(
-    child: PageNotFoundScreen(),
-  ),
+  errorPageBuilder: (context, state) {
+    Sentry.captureException(state.error);
+    return const NoTransitionPage(child: PageNotFoundScreen());
+  },
   redirect: (context, state) async {
     // Global redirect to App Update route if hard update is required if Splash
     // is not the current route. This ensures that the app update is enforced
