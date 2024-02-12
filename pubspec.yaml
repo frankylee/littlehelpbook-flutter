@@ -38,6 +38,7 @@ dependencies:
   powersync: ^1.2.1
   responsive_builder: ^0.7.0
   riverpod: ^2.5.0
+  sentry_flutter: ^7.16.0
   simple_routes: ^1.0.1
   supabase_flutter: ^2.3.2
   uptech_growthbook_sdk_flutter: ^1.2.0
