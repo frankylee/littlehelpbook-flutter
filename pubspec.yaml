@@ -18,6 +18,7 @@ dependencies:
   flutter_layout_grid: ^2.0.5
   flutter_localizations:
     sdk: flutter
+  flutter_loggy: ^2.0.2
   flutter_map: ^6.1.0
   flutter_map_animations: ^0.5.3
   flutter_map_cancellable_tile_provider: ^2.0.0
@@ -32,6 +33,7 @@ dependencies:
   intl_utils: ^2.8.7
   latlong2: ^0.9.0
   logging: ^1.2.0
+  loggy: ^2.0.3
   mockito: ^5.4.4
   package_info_plus: ^5.0.1
   path_provider: ^2.1.2

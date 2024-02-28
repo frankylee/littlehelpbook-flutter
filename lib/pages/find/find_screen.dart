@@ -7,8 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
 import 'package:littlehelpbook_flutter/entities/provider/location_provider.dart';
+import 'package:littlehelpbook_flutter/logger.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/location.dart';
+import 'package:logging/logging.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
@@ -31,7 +33,11 @@ final validLocationsProvider = FutureProvider<List<Location>>((ref) async {
         .toList();
     return nonNullLocations;
   } catch (e) {
-    print(e);
+    Logger('validLocationsProvider').severe(
+      'Unable to find locations.',
+      e,
+      StackTrace.current,
+    );
     return [];
   }
 });
@@ -44,7 +50,7 @@ class FindScreen extends ConsumerStatefulWidget {
 }
 
 class FindScreenState extends ConsumerState<FindScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, LoggerMixin {
   // final MapController _controller = MapController();
   late final _animatedMapController = AnimatedMapController(
     vsync: this,
@@ -148,8 +154,12 @@ class FindScreenState extends ConsumerState<FindScreen>
             ),
           ],
         ),
-        error: (err, _) {
-          print(err);
+        error: (err, st) {
+          logger.severe(
+            'Unable to display locations',
+            err,
+            st,
+          );
           return const SizedBox.shrink();
         },
         loading: () => const SizedBox.shrink(),

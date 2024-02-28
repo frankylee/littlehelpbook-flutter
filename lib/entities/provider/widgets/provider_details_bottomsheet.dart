@@ -4,6 +4,7 @@ import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/location_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/locations_list.dart';
 import 'package:littlehelpbook_flutter/entities/user_preferences/user_preferences_provider.dart';
+import 'package:littlehelpbook_flutter/logger.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/text_style.ext.dart';
@@ -67,7 +68,7 @@ class ProviderDetailsBottomSheet extends ConsumerStatefulWidget {
 }
 
 class _ProviderDetailsBottomSheetState
-    extends ConsumerState<ProviderDetailsBottomSheet> {
+    extends ConsumerState<ProviderDetailsBottomSheet> with LoggerMixin {
   @override
   Widget build(BuildContext context) {
     ref.listen<AsyncValue<List<Location>>>(
@@ -154,8 +155,11 @@ class _ProviderDetailsBottomSheetState
                       data: (data) => LocationsList(locations: data),
                       loading: () => Center(child: CircularProgressIndicator()),
                       error: (error, stackTrace) {
-                        // TODO: Capture exception in Sentry.
-                        print('ERROR: $error $stackTrace');
+                        logger.severe(
+                          'ERROR: ${error.toString()}',
+                          error,
+                          stackTrace,
+                        );
                         return const SizedBox.shrink();
                       },
                     ),

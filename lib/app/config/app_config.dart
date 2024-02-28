@@ -27,4 +27,9 @@ abstract class AppConfig {
 
   @EnviedField(varName: 'SUPABASE_URL', obfuscate: true)
   static final String supabaseUrl = _AppConfig.supabaseUrl;
+
+  // FLAVORS
+  static bool get isProduction => flavor == "production";
+  static bool get isDev => flavor == "dev";
+  static bool get isStage => flavor == "stage";
 }
