@@ -16,6 +16,13 @@ final providersByServiceProvider =
   ).map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
 });
 
+final providerByIdProvider =
+    StreamProvider.family<ServiceProvider, ServiceProviderId>((ref, id) {
+  return db.watch(
+    '''SELECT * FROM providers where id = '$id' ''',
+  ).map((res) => res.map(ServiceProvider.fromMap).first);
+});
+
 final favoriteProvidersStreamProvider =
     StreamProvider<List<ServiceProvider>>((ref) {
   return db.watch('''

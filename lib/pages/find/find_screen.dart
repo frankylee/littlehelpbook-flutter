@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
 import 'package:littlehelpbook_flutter/entities/provider/location_provider.dart';
+import 'package:littlehelpbook_flutter/entities/provider/service_provider_provider.dart';
+import 'package:littlehelpbook_flutter/entities/provider/widgets/provider_details_bottomsheet.dart';
 import 'package:littlehelpbook_flutter/logger.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
 import 'package:littlehelpbook_flutter/shared/models/location.dart';
@@ -97,14 +99,17 @@ class FindScreenState extends ConsumerState<FindScreen>
                                   location.longitude!,
                                 ),
                                 child: GestureDetector(
-                                  onTap: () => ScaffoldMessenger.of(context)
-                                      .showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        "Selected Location: ${location.toString()}",
-                                      ),
-                                    ),
-                                  ),
+                                  onTap: () async {
+                                    final serviceProvider = await ref.read(
+                                      providerByIdProvider(
+                                        location.providerId,
+                                      ).future,
+                                    );
+                                    ProviderDetailsBottomSheet.show(
+                                      context,
+                                      serviceProvider,
+                                    );
+                                  },
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
