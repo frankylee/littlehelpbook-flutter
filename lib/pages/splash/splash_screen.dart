@@ -27,6 +27,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       parent: _controller,
       curve: Curves.easeIn,
     );
+    _redirect();
   }
 
   @override
@@ -37,7 +38,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    _redirect();
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -55,15 +55,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   Future<void> _redirect() async {
     // If the app has an update, redirect to App Update screen. Otherwise, go Home.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(appUpdateProvider.future).then(
-            (value) async => await Future.delayed(
-              Duration(seconds: 2),
-              () => value == AppUpdateEnum.current
-                  ? const HomeRoute().go(context)
-                  : const AppUpdateRoute().go(context),
-            ),
-          );
-    });
+    await ref.read(appUpdateProvider.future).then(
+          (value) async => await Future.delayed(
+            Duration(seconds: 2),
+            () => value == AppUpdateEnum.current
+                ? const HomeRoute().go(context)
+                : const AppUpdateRoute().go(context),
+          ),
+        );
   }
 }
