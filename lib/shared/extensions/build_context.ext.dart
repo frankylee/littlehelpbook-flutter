@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:littlehelpbook_flutter/generated/l10n.dart';
+import 'package:littlehelpbook_flutter/app/l10n/generated/l10n.dart';
 
 extension BuildContextExt on BuildContext {
   String? get goRouterLocation => GoRouterState.of(this).uri.toString();

@@ -13,7 +13,7 @@ analyzer:
   exclude:
     - lib/generated_plugin_registrant.dart
     - lib/**/*.g.dart
-    - lib/generated/*
+    - lib/app/l10n/generated/*
   errors:
     todo: ignore
 linter:
@@ -37,7 +37,7 @@ linter:
     public_member_api_docs: false
   
     ignore:
-      lib/generated/*
+      - lib/app/l10n/generated/*
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

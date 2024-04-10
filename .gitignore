@@ -53,7 +53,7 @@ app.*.map.json
 **/*.g.dart
 
 #Translation Generation
-lib/generated/
+lib/app/l10n/generated/
 
 #Android Keystore
 android/little-help-book-release.keystore
