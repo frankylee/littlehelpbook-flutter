@@ -9,7 +9,6 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:very_good_analysis/analysis_options.yaml
 
-
 analyzer:
   exclude:
     - lib/generated_plugin_registrant.dart
@@ -38,7 +37,7 @@ linter:
     public_member_api_docs: false
   
     ignore:
-      lib/db/isar_collections/*.g.dart
+      lib/generated/*
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
