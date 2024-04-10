@@ -9,14 +9,14 @@ class LittleHelpBookTheme {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     colorScheme: lightColorScheme,
     expansionTileTheme: expansionTileTheme,
-    scaffoldBackgroundColor: lightColorScheme.background,
+    scaffoldBackgroundColor: lightColorScheme.surface,
     snackBarTheme: snackbarTheme,
   );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     colorScheme: darkColorScheme,
     expansionTileTheme: expansionTileTheme,
-    scaffoldBackgroundColor: darkColorScheme.background,
+    scaffoldBackgroundColor: darkColorScheme.surface,
     snackBarTheme: snackbarTheme,
   );
 }

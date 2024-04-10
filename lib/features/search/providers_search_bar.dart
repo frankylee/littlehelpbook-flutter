@@ -28,13 +28,13 @@ class _ProviderSearchBarState extends State<ProviderSearchBar> {
       padding: EdgeInsets.symmetric(horizontal: 12.0),
       child: SearchBar(
         controller: _textController,
-        elevation: MaterialStatePropertyAll(0.0),
+        elevation: WidgetStatePropertyAll(0.0),
         hintText: context.l10n.searchProviders,
-        hintStyle: MaterialStatePropertyAll(
+        hintStyle: WidgetStatePropertyAll(
           TextStyle(color: context.colorTheme.onSurface.withOpacity(0.75)),
         ),
         onChanged: (value) => widget.searchNotifier.value = value,
-        side: MaterialStatePropertyAll(
+        side: WidgetStatePropertyAll(
           BorderSide(color: context.colorTheme.secondary),
         ),
         trailing: [
