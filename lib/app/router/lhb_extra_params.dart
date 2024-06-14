@@ -1,0 +1,4 @@
+enum LhbExtraParams {
+  categoryName,
+  serviceName,
+}

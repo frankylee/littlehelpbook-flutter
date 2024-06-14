@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_extra_params.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_route_params.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/service/service_provider.dart';
@@ -37,14 +40,15 @@ class ServicesByCategoryScreen extends ConsumerWidget {
           child: ref.watch(servicesStreamProvider(categoryId)).maybeWhen(
                 data: (data) => ServicesList(
                   services: data,
-                  onTap: (service) async => ProvidersByServiceRoute().push(
-                    context,
-                    data: ProvidersByServiceData(
-                      categoryId: categoryId,
-                      categoryName: categoryName,
-                      serviceId: service.id,
-                      serviceName: service.nameEn,
-                    ),
+                  onTap: (service) async => context.pushNamed(
+                    LhbRoute.providersByService.name,
+                    pathParameters: {
+                      LhbRouteParams.categoryId.name: categoryId,
+                      LhbRouteParams.serviceId.name: service.id,
+                    },
+                    extra: {
+                      LhbExtraParams.serviceName.name: service.nameEn,
+                    },
                   ),
                 ),
                 orElse: () => Center(child: CircularProgressIndicator()),

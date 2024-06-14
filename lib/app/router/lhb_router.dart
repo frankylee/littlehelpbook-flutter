@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_extra_params.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_route_params.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/pages/app_update/app_update.dart';
 import 'package:littlehelpbook_flutter/pages/emergency_crisis_lines/emergency_crisis_lines_screen.dart';
@@ -28,7 +30,7 @@ final _shellNavigatorKeySettings =
     GlobalKey<NavigatorState>(debugLabel: 'settingsTab');
 
 final lhbRouter = GoRouter(
-  initialLocation: const SplashRoute().fullPath(),
+  initialLocation: LhbRoute.splash.path,
   navigatorKey: _rootNavigatorKey,
   routes: _routes,
   debugLogDiagnostics: kDebugMode,
@@ -40,11 +42,11 @@ final lhbRouter = GoRouter(
     // Global redirect to App Update route if hard update is required if Splash
     // is not the current route. This ensures that the app update is enforced
     // for users who do not quit/relaunch the application.
-    if (state.fullPath == SplashRoute().fullPath()) return null;
+    if (state.fullPath == LhbRoute.splash.path) return null;
     final container = ProviderScope.containerOf(context);
     final appVersion = await container.read(appUpdateProvider.future);
     if (appVersion == AppUpdateEnum.hardUpdate) {
-      return AppUpdateRoute().goPath;
+      return LhbRoute.appUpdate.path;
     }
     return null;
   },
@@ -55,13 +57,15 @@ final lhbRouter = GoRouter(
 // https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter
 final _routes = [
   GoRoute(
-    path: const SplashRoute().goPath,
+    name: LhbRoute.splash.name,
+    path: LhbRoute.splash.path,
     pageBuilder: (context, state) => const MaterialPage(
       child: const SplashScreen(),
     ),
   ),
   GoRoute(
-    path: const AppUpdateRoute().goPath,
+    name: LhbRoute.appUpdate.name,
+    path: LhbRoute.appUpdate.path,
     pageBuilder: (context, state) => const NoTransitionPage(
       child: const AppUpdateScreen(),
     ),
@@ -75,45 +79,50 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyHome,
         routes: [
           GoRoute(
-            path: const HomeRoute().goPath,
+            name: LhbRoute.home.name,
+            path: LhbRoute.home.path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const HomeScreen(),
             ),
             routes: [
               GoRoute(
-                path: const EmergencyCrisisLinesRoute().goPath,
+                name: LhbRoute.crisisLines.name,
+                path: LhbRoute.crisisLines.path,
                 builder: (context, state) => const EmergencyCrisisLinesScreen(),
               ),
               GoRoute(
-                path: const ProviderRoute().goPath,
+                name: LhbRoute.provider.name,
+                path: LhbRoute.provider.path,
                 builder: (context, state) => const ProvidersScreen(),
               ),
               GoRoute(
-                path: const ServiceRoute().goPath,
+                name: LhbRoute.service.name,
+                path: LhbRoute.service.path,
                 builder: (context, state) => const ServicesScreen(),
                 routes: [
                   GoRoute(
-                    path: const ServicesByCategoryRoute().goPath,
+                    name: LhbRoute.servicesByCategory.name,
+                    path: LhbRoute.servicesByCategory.path,
                     builder: (context, state) {
-                      final routeData = ServicesByCategoryData.fromState(state);
+                      final data = state.extra as Map<String, String>;
                       return ServicesByCategoryScreen(
-                        categoryId: routeData.categoryId,
-                        categoryName: routeData.categoryName,
+                        categoryId: state
+                            .pathParameters[LhbRouteParams.categoryId.name]!,
+                        categoryName:
+                            data[LhbExtraParams.categoryName.name] as String,
                       );
                     },
                     routes: [
                       GoRoute(
-                        path: const ProvidersByServiceRoute().goPath,
+                        name: LhbRoute.providersByService.name,
+                        path: LhbRoute.providersByService.path,
                         builder: (context, state) {
-                          final parentData =
-                              ServicesByCategoryData.fromState(state);
-                          final routeData = ProvidersByServiceData.fromState(
-                            state,
-                            parentData,
-                          );
+                          final data = state.extra as Map<String, String>;
                           return ProvidersByServiceScreen(
-                            serviceId: routeData.serviceId,
-                            serviceName: routeData.serviceName,
+                            serviceId: state
+                                .pathParameters[LhbRouteParams.serviceId.name]!,
+                            serviceName:
+                                data[LhbExtraParams.serviceName.name] as String,
                           );
                         },
                       ),
@@ -129,7 +138,8 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFind,
         routes: [
           GoRoute(
-            path: const FindRoute().goPath,
+            name: LhbRoute.find.name,
+            path: LhbRoute.find.path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FindScreen(),
             ),
@@ -140,7 +150,8 @@ final _routes = [
         navigatorKey: _shellNavigatorKeyFavorites,
         routes: [
           GoRoute(
-            path: const FavoritesRoute().goPath,
+            name: LhbRoute.favorites.name,
+            path: LhbRoute.favorites.path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const FavoritesScreen(),
             ),
@@ -151,7 +162,8 @@ final _routes = [
         navigatorKey: _shellNavigatorKeySettings,
         routes: [
           GoRoute(
-            path: const SettingsRoute().goPath,
+            name: LhbRoute.settings.name,
+            path: LhbRoute.settings.path,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: const SettingsScreen(),
             ),

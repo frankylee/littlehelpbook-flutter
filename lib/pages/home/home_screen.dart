@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                   enableFeedback: true,
                   onTap: () async => Future.delayed(
                     const Duration(milliseconds: 120),
-                    () async => EmergencyCrisisLinesRoute().go(context),
+                    () async => context.goNamed(LhbRoute.crisisLines.name),
                   ),
                 ),
                 Divider(),
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   enableFeedback: true,
                   onTap: () async => Future.delayed(
                     const Duration(milliseconds: 120),
-                    () async => ServiceRoute().go(context),
+                    () async => context.goNamed(LhbRoute.service.name),
                   ),
                 ),
                 Divider(),
@@ -81,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                   enableFeedback: true,
                   onTap: () async => Future.delayed(
                     const Duration(milliseconds: 120),
-                    () async => ProviderRoute().go(context),
+                    () async => context.goNamed(LhbRoute.provider.name),
                   ),
                 ),
               ],

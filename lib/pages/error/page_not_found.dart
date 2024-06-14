@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
@@ -30,7 +31,7 @@ class PageNotFoundScreen extends StatelessWidget {
               padding: const EdgeInsets.all(0),
               color: Colors.white,
               icon: const Icon(Icons.close),
-              onPressed: () => HomeRoute().go(context),
+              onPressed: () => context.go(LhbRoute.home.path),
             ),
           ],
         ),
@@ -55,7 +56,7 @@ class PageNotFoundScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 48.0),
                 SecondaryButton(
-                  onPressed: () => HomeRoute().go(context),
+                  onPressed: () => context.go(LhbRoute.home.path),
                   text: context.l10n.home,
                 ),
               ],

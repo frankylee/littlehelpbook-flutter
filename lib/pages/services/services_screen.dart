@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_extra_params.dart';
+import 'package:littlehelpbook_flutter/app/router/lhb_route_params.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/category/category_provider.dart';
@@ -69,12 +72,14 @@ class ServicesDataView extends StatelessWidget {
           data.isNotEmpty
               ? CategoriesList(
                   categories: data,
-                  onTap: (category) => ServicesByCategoryRoute().push(
-                    context,
-                    data: ServicesByCategoryData(
-                      categoryId: category.id,
-                      categoryName: category.nameEn,
-                    ),
+                  onTap: (category) => context.pushNamed(
+                    LhbRoute.servicesByCategory.name,
+                    pathParameters: {
+                      LhbRouteParams.categoryId.name: category.id,
+                    },
+                    extra: {
+                      LhbExtraParams.categoryName.name: category.nameEn,
+                    },
                   ),
                 )
               : SizedBox(

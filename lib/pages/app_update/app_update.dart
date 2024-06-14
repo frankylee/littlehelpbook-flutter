@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:littlehelpbook_flutter/app/router/lhb_routes.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/shared/app_version/app_update_provider.dart';
@@ -30,7 +31,7 @@ class AppUpdateScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(0),
                 color: Colors.white,
                 icon: const Icon(Icons.close),
-                onPressed: () => HomeRoute().go(context),
+                onPressed: () => context.go(LhbRoute.home.path),
               ),
           ],
         ),
@@ -69,7 +70,7 @@ class AppUpdateScreen extends ConsumerWidget {
                           context.l10n.updateLater,
                           style: context.textTheme.bodyMedium?.white,
                         ),
-                        onPressed: () => HomeRoute().go(context),
+                        onPressed: () => context.go(LhbRoute.home.path),
                       ),
                     ),
                 ],
