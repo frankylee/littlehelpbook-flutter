@@ -1,0 +1,4 @@
+arb-dir: lib/app/l10n
+output-class: LittleHelpBookL10n
+output-localization-file: littlehelpbook_l10n.dart
+template-arb-file: app_en.arb

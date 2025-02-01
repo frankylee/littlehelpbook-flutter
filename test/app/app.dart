@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/littlehelpbook_l10n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/app/l10n/generated/l10n.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_theme.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -23,8 +23,8 @@ class TestAppWrapper extends StatelessWidget {
       overrides: overrides,
       child: ResponsiveApp(
         builder: (context) => MaterialApp(
-          localizationsDelegates: const [S.delegate],
-          supportedLocales: const [Locale('en', 'es')],
+          localizationsDelegates: LittleHelpBookL10n.localizationsDelegates,
+          supportedLocales: LittleHelpBookL10n.supportedLocales,
           theme: LittleHelpBookTheme.lightTheme,
           darkTheme: LittleHelpBookTheme.darkTheme,
           home: MockGoRouterProvider(

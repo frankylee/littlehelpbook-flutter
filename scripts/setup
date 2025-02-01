@@ -47,7 +47,7 @@ exit_nonzero $? "Build Runner failed" 20
 
 # Generate localization files
 echo "\n\nRunning flutter gen-l10n..."
-time fvm dart run intl_utils:generate
+time fvm flutter gen-l10n
 exit_nonzero $? "Generate l10n failed" 30
 
 # Make sure format is good
