@@ -19,7 +19,7 @@ class RefreshTogglesNotifier extends AutoDisposeNotifier<void> {
   void build() {
     if (_togglesTimer == null || !_togglesTimer!.isActive) {
       _togglesTimer = Timer.periodic(const Duration(minutes: 20), (_) async {
-        await LhbToggles.shared.refresh();
+        await LhbToggles.refresh();
         // Refresh the alert message toggle provider to show/hide the alert message.
         ref.invalidate(alertMessageToggleProvider);
         // Refresh the app update provider to enforce hard app updates on route change.

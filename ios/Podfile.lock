@@ -1,12 +1,10 @@
 PODS:
-  - app_links (0.0.1):
+  - app_links (0.0.2):
     - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
   - flutter_compass (0.0.1):
-    - Flutter
-  - flutter_keyboard_visibility (0.0.1):
     - Flutter
   - geocoding_ios (1.0.5):
     - Flutter
@@ -17,30 +15,34 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - powersync-sqlite-core (0.1.6)
+  - powersync-sqlite-core (0.3.9)
   - powersync_flutter_libs (0.0.1):
     - Flutter
-    - powersync-sqlite-core (~> 0.1.6)
-  - Sentry/HybridSDK (8.25.2)
-  - sentry_flutter (8.2.0):
+    - powersync-sqlite-core (~> 0.3.8)
+  - Sentry/HybridSDK (8.42.0)
+  - sentry_flutter (8.12.0):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.25.2)
+    - Sentry/HybridSDK (= 8.42.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - "sqlite3 (3.46.0+1)":
-    - "sqlite3/common (= 3.46.0+1)"
-  - "sqlite3/common (3.46.0+1)"
-  - "sqlite3/fts5 (3.46.0+1)":
+  - sqlite3 (3.48.0):
+    - sqlite3/common (= 3.48.0)
+  - sqlite3/common (3.48.0)
+  - sqlite3/dbstatvtab (3.48.0):
     - sqlite3/common
-  - "sqlite3/perf-threadsafe (3.46.0+1)":
+  - sqlite3/fts5 (3.48.0):
     - sqlite3/common
-  - "sqlite3/rtree (3.46.0+1)":
+  - sqlite3/perf-threadsafe (3.48.0):
+    - sqlite3/common
+  - sqlite3/rtree (3.48.0):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - sqlite3 (~> 3.46.0)
+    - FlutterMacOS
+    - sqlite3 (~> 3.48.0)
+    - sqlite3/dbstatvtab
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
@@ -52,7 +54,6 @@ DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
-  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -60,7 +61,7 @@ DEPENDENCIES:
   - powersync_flutter_libs (from `.symlinks/plugins/powersync_flutter_libs/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
+  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -78,8 +79,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_compass:
     :path: ".symlinks/plugins/flutter_compass/ios"
-  flutter_keyboard_visibility:
-    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   geocoding_ios:
     :path: ".symlinks/plugins/geocoding_ios/ios"
   geolocator_apple:
@@ -95,29 +94,28 @@ EXTERNAL SOURCES:
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqlite3_flutter_libs:
-    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
+    :path: ".symlinks/plugins/sqlite3_flutter_libs/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
-  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
+  device_info_plus: bf2e3232933866d73fe290f2942f2156cdd10342
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_compass: cbbd285cea1584c7ac9c4e0c3e1f17cbea55e855
-  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   geocoding_ios: d7460f56e80e118d57678efe5c2cdc888739ff18
-  geolocator_apple: 9157311f654584b9bb72686c55fc02a97b73f461
-  package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
-  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
-  powersync-sqlite-core: 4c38c8f470f6dca61346789fd5436a6826d1e3dd
-  powersync_flutter_libs: 5d6b132a398de442c0853a8b14bfbb62cd4ff5a1
-  Sentry: 51b056d96914a741f63eca774d118678b1eb05a1
-  sentry_flutter: e8397d13e297a5d4b6be8a752e33140b21c5cc97
-  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
-  sqlite3: 292c3e1bfe89f64e51ea7fc7dab9182a017c8630
-  sqlite3_flutter_libs: 0d611efdf6d1c9297d5ab03dab21b75aeebdae31
-  url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
+  geolocator_apple: 9bcea1918ff7f0062d98345d238ae12718acfbc1
+  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  powersync-sqlite-core: 7515d321eb8e3c08b5259cdadb9d19b1876fe13a
+  powersync_flutter_libs: d3772510135d3eec09848015f8516f8b2689c794
+  Sentry: 38ed8bf38eab5812787274bf591e528074c19e02
+  sentry_flutter: 7d1f1df30f3768c411603ed449519bbb90a7d87b
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  sqlite3: 3da10a59910c809fb584a93aa46a3f05b785e12e
+  sqlite3_flutter_libs: 5f386339eccc9516a12ab10e4aa925cbef5f2dcf
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
-PODFILE CHECKSUM: 08393d35f761e2d03d14140839bc8ca8fa9975e4
+PODFILE CHECKSUM: 7be2f5f74864d463a8ad433546ed1de7e0f29aef
 
 COCOAPODS: 1.15.2

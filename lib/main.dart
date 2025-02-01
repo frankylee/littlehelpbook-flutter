@@ -4,9 +4,9 @@ import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/app.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
-import 'package:littlehelpbook_flutter/shared/extensions/map_ext.dart';
 import 'package:littlehelpbook_flutter/app/toggle/lhb_toggles.dart';
 import 'package:littlehelpbook_flutter/logger.dart';
+import 'package:littlehelpbook_flutter/shared/extensions/map_ext.dart';
 import 'package:littlehelpbook_flutter/shared/powersync/powersync.dart';
 import 'package:logging/logging.dart';
 import 'package:loggy/loggy.dart';
@@ -18,7 +18,7 @@ Future<void> main() async {
   // usePathUrlStrategy();
   _initializeLogging();
 
-  await LhbToggles.shared.init();
+  await LhbToggles.init();
 
   final app = await buildAppWithRiverpod(const LittleHelpBook());
   await openPowerSyncDatabase();

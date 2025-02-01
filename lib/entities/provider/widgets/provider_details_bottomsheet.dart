@@ -34,17 +34,17 @@ class ProviderDetailsBottomSheet extends ConsumerStatefulWidget {
   ) async {
     await WoltModalSheet.show<void>(
       context: context,
-      maxDialogWidth: 900,
-      minDialogWidth: 88.sh,
-      minPageHeight: 0.0,
-      maxPageHeight: 0.9,
+      // maxDialogWidth: 900,
+      // minDialogWidth: 88.sh,
+      // minPageHeight: 0.0,
+      // maxPageHeight: 0.9,
       modalTypeBuilder: (context) {
         final deviceType = getDeviceType(MediaQuery.of(context).size);
         if (deviceType == DeviceScreenType.tablet &&
             MediaQuery.of(context).orientation == Orientation.landscape) {
-          return WoltModalType.dialog;
+          return WoltModalType.dialog();
         } else {
-          return WoltModalType.bottomSheet;
+          return WoltModalType.bottomSheet();
         }
       },
       onModalDismissedWithBarrierTap: Navigator.of(context).pop,

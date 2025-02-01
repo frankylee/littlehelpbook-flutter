@@ -1,28 +1,43 @@
+import 'package:growthbook_sdk_flutter/growthbook_sdk_flutter.dart';
 import 'package:littlehelpbook_flutter/app/config/app_config.dart';
-import 'package:uptech_growthbook_sdk_flutter/uptech_growthbook_sdk_flutter.dart';
 
-class LhbToggles extends UptechGrowthBookWrapper {
-  LhbToggles()
-      : super(
-          apiHost: AppConfig.growthBookHost,
-          clientKey: AppConfig.growthBookApiKey,
-        );
+class LhbToggles {
+  LhbToggles._();
 
-  static final shared = LhbToggles();
+  static late GrowthBookSDK _client;
 
-  static String? get alertMessage => shared.value('alert-message') as String?;
+  static String? get alertMessage =>
+      _client.feature('alert-message').value as String?;
 
   static String get appVersionHard =>
-      shared.value('app-version-hard') as String? ?? "1.0.0";
+      _client.feature('app-version-hard') as String? ?? "1.0.0";
 
   static String get appVersionSoft =>
-      shared.value('app-version-soft') as String? ?? "1.0.0";
+      _client.feature('app-version-soft') as String? ?? "1.0.0";
 
   static double get sentryProfilesSampleRate =>
-      double.tryParse(shared.value('sentry-profiles-sample-rate') as String) ??
+      double.tryParse(
+        _client.feature('sentry-profiles-sample-rate') as String,
+      ) ??
       1.0;
 
   static double get sentryTracesSampleRate =>
-      double.tryParse(shared.value('sentry-traces-sample-rate') as String) ??
+      double.tryParse(_client.feature('sentry-traces-sample-rate') as String) ??
       1.0;
+
+  /// Initialize the GrowthBook client and fetch all toggles.
+  static Future<void> init() async {
+    _client = await GBSDKBuilderApp(
+      apiKey: AppConfig.growthBookApiKey,
+      hostURL: AppConfig.growthBookHost,
+      backgroundSync: true,
+      growthBookTrackingCallBack: (data) {},
+    ).initialize();
+    await refresh();
+  }
+
+  /// Force a refresh of toggles from the server
+  static Future<void> refresh() async {
+    return await _client.refresh();
+  }
 }
