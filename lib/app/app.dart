@@ -22,6 +22,7 @@ class LittleHelpBook extends ConsumerWidget {
             );
     return ResponsiveApp(
       builder: (context) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         onGenerateTitle: (context) => context.l10n.littleHelpBook,
         theme: LittleHelpBookTheme.lightTheme,
         darkTheme: LittleHelpBookTheme.darkTheme,
