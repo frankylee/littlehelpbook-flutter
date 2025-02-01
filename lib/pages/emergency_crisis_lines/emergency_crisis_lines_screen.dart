@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/service_provider_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/providers_list.dart';
+import 'package:littlehelpbook_flutter/features/call/crisis_line_local.dart';
+import 'package:littlehelpbook_flutter/features/call/crisis_line_national.dart';
 import 'package:littlehelpbook_flutter/features/search/providers_search_bar.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/build_context.ext.dart';
@@ -27,40 +28,43 @@ class EmergencyCrisisLinesScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 16.0),
         child: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: LhbStyleConstants.maxPageContentWidth,
-            ),
-            child: Column(
-              children: [
-                ExpansionTile(
-                  title: Text(
-                    context.l10n.areYouInCrisis,
-                    style: context.textTheme.titleLarge?.primary(context),
-                  ),
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      child: BorderedContainer(
-                        child: Text(
-                          context.l10n.aCrisisIsDefinedBy,
-                          softWrap: true,
+          child: Column(
+            children: [
+              ExpansionTile(
+                title: Text(
+                  context.l10n.areYouInCrisis,
+                  style: context.textTheme.titleLarge?.primary(context),
+                ),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 12.0,
+                    ),
+                    child: BorderedContainer(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(text: context.l10n.aCrisisIsDefinedBy1),
+                            CrisisLineLocal.asTextSpan(context),
+                            TextSpan(text: ' ${context.l10n.or} '),
+                            CrisisLineNational.asTextSpan(context),
+                            TextSpan(text: context.l10n.aCrisisIsDefinedBy2),
+                          ],
                           style: context.textTheme.bodyMedium,
                         ),
+                        softWrap: true,
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 24.0),
-                ref.watch(emergencyCrisisLinesProvider).maybeWhen(
-                      data: EmergencyCrisisLinesScreenDataView.new,
-                      orElse: () => Center(child: CircularProgressIndicator()),
-                    ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24.0),
+              ref.watch(emergencyCrisisLinesProvider).maybeWhen(
+                    data: EmergencyCrisisLinesScreenDataView.new,
+                    orElse: () => Center(child: CircularProgressIndicator()),
+                  ),
+            ],
           ),
         ),
       ),
