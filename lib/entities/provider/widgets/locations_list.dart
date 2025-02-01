@@ -110,7 +110,10 @@ class LocationsList extends StatelessWidget {
                             },
                             child: Text(
                               location.phones[i],
-                              style: context.textTheme.bodyMedium?.white,
+                              style:
+                                  context.textTheme.bodyMedium?.white.copyWith(
+                                decoration: TextDecoration.underline,
+                              ),
                               softWrap: true,
                             ),
                           ),
