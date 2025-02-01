@@ -19,7 +19,7 @@ class GradientContainer extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(4.0)),
-          color: Colors.white.withValues(alpha: 200),
+          color: Colors.white,
         ),
         width: double.maxFinite,
         child: Container(
@@ -30,8 +30,8 @@ class GradientContainer extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF3C61C5).withValues(alpha: 200),
-                Color(0xFF23A991).withValues(alpha: 200),
+                Color(0xFF3C61C5),
+                Color(0xFF23A991),
               ],
             ),
           ),

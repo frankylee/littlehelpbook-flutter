@@ -31,7 +31,7 @@ class _ProviderSearchBarState extends State<ProviderSearchBar> {
         elevation: WidgetStatePropertyAll(0.0),
         hintText: context.l10n.searchProviders,
         hintStyle: WidgetStatePropertyAll(
-          TextStyle(color: context.colorTheme.onSurface.withValues(alpha: 200)),
+          TextStyle(color: context.colorTheme.onSurface.withAlpha(50)),
         ),
         onChanged: (value) => widget.searchNotifier.value = value,
         side: WidgetStatePropertyAll(
@@ -40,12 +40,12 @@ class _ProviderSearchBarState extends State<ProviderSearchBar> {
         trailing: [
           Icon(
             Icons.search_rounded,
-            color: context.colorTheme.onSurface.withValues(alpha: 200),
+            color: context.colorTheme.onSurface.withAlpha(50),
           ),
           IconButton(
             icon: Icon(
               Icons.close_rounded,
-              color: context.colorTheme.onSurface.withValues(alpha: 200),
+              color: context.colorTheme.onSurface.withAlpha(50),
             ),
             onPressed: () {
               setState(() {
