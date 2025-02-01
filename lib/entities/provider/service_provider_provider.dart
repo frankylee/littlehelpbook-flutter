@@ -5,7 +5,7 @@ import 'package:littlehelpbook_flutter/shared/powersync/powersync.dart';
 
 final providersStreamProvider = StreamProvider<List<ServiceProvider>>((ref) {
   return db
-      .watch("SELECT * FROM providers ORDER BY name ASC")
+      .watch('SELECT * FROM providers ORDER BY name ASC')
       .map((res) => res.map(ServiceProvider.fromMap).toList(growable: false));
 });
 

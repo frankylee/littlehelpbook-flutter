@@ -28,7 +28,7 @@ class SupabaseConnector extends PowerSyncBackendConnector {
       );
       if (authResponse.status != 200) {
         throw HttpException(
-          "Failed to get PowerSync Token, code=${authResponse.status}",
+          'Failed to get PowerSync Token, code=${authResponse.status}',
         );
       }
       return PowerSyncCredentials(

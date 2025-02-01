@@ -29,7 +29,7 @@ abstract class AppConfig {
   static final String supabaseUrl = _AppConfig.supabaseUrl;
 
   // FLAVORS
-  static bool get isProduction => flavor == "production";
-  static bool get isDev => flavor == "dev";
-  static bool get isStage => flavor == "stage";
+  static bool get isProduction => flavor == 'production';
+  static bool get isDev => flavor == 'dev';
+  static bool get isStage => flavor == 'stage';
 }

@@ -30,19 +30,15 @@ echo "\nSetting up $flavor flavor..."
 echo "\n\nRunning fvm flutter clean..."
 time fvm flutter clean
 
+# Update dependencies based on any changes in the pubspec.yaml
+echo "\n\nRunning fvm flutter pub get..."
+time fvm flutter pub get
+exit_nonzero $? "fvm flutter pub get failed" 5
+
 # Pull in .env from Doppler based on config flavor
 echo "\n\nPull secrets from Doppler..."
 doppler secrets substitute .env_doppler --output .env --project littlehelpbook-flutter --config $flavor
-exit_nonzero $? "fetch_env from Dopper $flavor failed" 5
-
-echo "\n\nRunning fvm dart pub global activate very_good_cli..."
-time dart pub global activate very_good_cli
-time export PATH="$PATH":"$HOME/.pub-cache/bin"
-
-# Update dependencies based on any changes in the pubspec.yaml
-echo "\n\nRunning very_good get..."
-time very_good packages get --recursive
-exit_nonzero $? "fetch pub packages failed" 10
+exit_nonzero $? "fetch_env from Doppler $flavor failed" 10
 
 # Run Build Runner.
 echo "\n\nRunning flutter pub run build_runner build..."
@@ -51,11 +47,11 @@ exit_nonzero $? "Build Runner failed" 20
 
 # Generate localization files
 echo "\n\nRunning flutter gen-l10n..."
-fvm dart run intl_utils:generate
+time fvm dart run intl_utils:generate
 exit_nonzero $? "Generate l10n failed" 30
 
 # Make sure format is good
-echo "\n\nRunning dart format ..."
+echo "\n\nRunning dart format..."
 time fvm dart format .
 exit_nonzero $? "Dart Format failed" 40
 

@@ -43,13 +43,13 @@ class HoursOfOperation extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${schedule.opensAt?.format(context)}—${schedule.closesAt?.format(context)}",
+                        '${schedule.opensAt?.format(context)}—${schedule.closesAt?.format(context)}',
                         softWrap: true,
                         style: context.textTheme.bodyMedium?.white,
                       ),
                       const SizedBox(width: 24.0),
                       Text(
-                        "${schedule.formatSchedule(context)}",
+                        '${schedule.formatSchedule(context)}',
                         softWrap: true,
                         style: context.textTheme.bodyMedium?.white,
                       ),

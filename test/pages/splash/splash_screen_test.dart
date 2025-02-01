@@ -7,8 +7,8 @@ import '../../app/app.dart';
 import '../../shared/app_version/app_update_provider.dart';
 
 void main() {
-  group("Splash Screen", () {
-    testWidgets("Splash screen is the initial route", (tester) async {
+  group('Splash Screen', () {
+    testWidgets('Splash screen is the initial route', (tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           TestAppWrapper(
@@ -30,8 +30,8 @@ void main() {
     });
   });
 
-  group("Splash Screen routes to App Update Screen for soft update", () {
-    testWidgets("Splash screen navigates away after duration", (tester) async {
+  group('Splash Screen routes to App Update Screen for soft update', () {
+    testWidgets('Splash screen navigates away after duration', (tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           TestAppWrapper(
@@ -55,8 +55,8 @@ void main() {
     });
   });
 
-  group("Splash Screen routes to App Update Screen for hard update", () {
-    testWidgets("Splash screen navigates away after duration", (tester) async {
+  group('Splash Screen routes to App Update Screen for hard update', () {
+    testWidgets('Splash screen navigates away after duration', (tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           TestAppWrapper(

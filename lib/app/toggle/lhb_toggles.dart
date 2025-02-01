@@ -10,10 +10,10 @@ class LhbToggles {
       _client.feature('alert-message').value as String?;
 
   static String get appVersionHard =>
-      _client.feature('app-version-hard') as String? ?? "1.0.0";
+      _client.feature('app-version-hard') as String? ?? '1.0.0';
 
   static String get appVersionSoft =>
-      _client.feature('app-version-soft') as String? ?? "1.0.0";
+      _client.feature('app-version-soft') as String? ?? '1.0.0';
 
   static double get sentryProfilesSampleRate =>
       double.tryParse(

@@ -54,7 +54,7 @@ class QueryWidgetState extends State<QueryWidget> {
       onError: (dynamic e) {
         setState(() {
           if (e is sqlite.SqliteException) {
-            _error = "${e.message}!";
+            _error = '${e.message}!';
           } else {
             _error = e.toString();
           }

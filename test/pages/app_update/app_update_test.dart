@@ -7,7 +7,7 @@ import '../../app/app.dart';
 import '../../shared/app_version/app_update_provider.dart';
 
 void main() {
-  group("App Update", () {
+  group('App Update', () {
     group('Hard app update required', () {
       testWidgets('does not show close action', (WidgetTester tester) async {
         await tester.pumpWidget(
