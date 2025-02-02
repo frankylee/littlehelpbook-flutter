@@ -53,7 +53,6 @@ class FindScreen extends ConsumerStatefulWidget {
 
 class FindScreenState extends ConsumerState<FindScreen>
     with TickerProviderStateMixin, LoggerMixin {
-  // final MapController _controller = MapController();
   late final _animatedMapController = AnimatedMapController(
     vsync: this,
     curve: Curves.easeInToLinear,
@@ -62,11 +61,10 @@ class FindScreenState extends ConsumerState<FindScreen>
   @override
   Widget build(BuildContext context) {
     final mapStyleLoader = ref.watch(mapStyleProvider);
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.colorTheme.inversePrimary,
         title: Text(context.l10n.findServiceProviders),
+        centerTitle: true,
       ),
       body: mapStyleLoader.when(
         data: (mapStyle) => FlutterMap(
@@ -113,12 +111,11 @@ class FindScreenState extends ConsumerState<FindScreen>
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color:
-                                          context.colorTheme.primaryContainer,
+                                      color: context.colorTheme.tertiary,
                                     ),
                                     child: Icon(
                                       Icons.health_and_safety,
-                                      color: context.colorTheme.primary,
+                                      color: context.colorTheme.onTertiary,
                                     ),
                                   ),
                                 ),
@@ -132,7 +129,7 @@ class FindScreenState extends ConsumerState<FindScreen>
                   return Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: context.colorTheme.primaryContainer,
+                      color: context.colorTheme.tertiaryContainer,
                     ),
                     child: Center(
                       child: Text(
@@ -145,7 +142,7 @@ class FindScreenState extends ConsumerState<FindScreen>
               ),
             ),
             CurrentLocationLayer(
-              alignPositionOnUpdate: AlignOnUpdate.always,
+              alignPositionOnUpdate: AlignOnUpdate.once,
             ),
             RichAttributionWidget(
               attributions: [
@@ -160,11 +157,7 @@ class FindScreenState extends ConsumerState<FindScreen>
           ],
         ),
         error: (err, st) {
-          logger.severe(
-            'Unable to display locations',
-            err,
-            st,
-          );
+          logger.severe('Unable to display locations', err, st);
           return const SizedBox.shrink();
         },
         loading: () => const SizedBox.shrink(),
