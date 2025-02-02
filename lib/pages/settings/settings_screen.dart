@@ -13,6 +13,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.settings),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: LhbStyleConstants.pagePaddingInsets,
