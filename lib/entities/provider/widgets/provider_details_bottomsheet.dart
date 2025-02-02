@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlehelpbook_flutter/app/theme/lhb_style_constants.dart';
 import 'package:littlehelpbook_flutter/entities/provider/location_provider.dart';
 import 'package:littlehelpbook_flutter/entities/provider/widgets/locations_list.dart';
+import 'package:littlehelpbook_flutter/entities/service/service_provider.dart';
 import 'package:littlehelpbook_flutter/entities/user_preferences/user_preferences_provider.dart';
 import 'package:littlehelpbook_flutter/logger.dart';
 import 'package:littlehelpbook_flutter/shared/extensions/async_value.ext.dart';
@@ -34,10 +35,6 @@ class ProviderDetailsBottomSheet extends ConsumerStatefulWidget {
   ) async {
     await WoltModalSheet.show<void>(
       context: context,
-      // maxDialogWidth: 900,
-      // minDialogWidth: 88.sh,
-      // minPageHeight: 0.0,
-      // maxPageHeight: 0.9,
       modalTypeBuilder: (context) {
         final deviceType = getDeviceType(MediaQuery.of(context).size);
         if (deviceType == DeviceScreenType.tablet &&
@@ -112,6 +109,38 @@ class _ProviderDetailsBottomSheetState
                     ),
                   ],
                 ),
+                ref.watch(servicesByIdsProvider(widget.provider.services)).when(
+                      data: (data) {
+                        if (data.isEmpty) return const SizedBox.shrink();
+                        return Column(
+                          children: [
+                            const SizedBox(height: 24.0),
+                            Text(
+                              context.l10n.services,
+                              style: context.textTheme.titleLarge?.white,
+                            ),
+                            const SizedBox(height: 12.0),
+                            ...data
+                                .map(
+                                  (i) => Text(
+                                    i.nameEn,
+                                    style: context.textTheme.bodyMedium?.white,
+                                  ),
+                                )
+                                .toList(),
+                          ],
+                        );
+                      },
+                      error: (error, stackTrace) {
+                        logger.severe(
+                          'ERROR: ${error.toString()}',
+                          error,
+                          stackTrace,
+                        );
+                        return const SizedBox.shrink();
+                      },
+                      loading: () => const SizedBox.shrink(),
+                    ),
                 const SizedBox(height: 48.0),
                 Column(
                   children: [

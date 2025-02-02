@@ -17,3 +17,17 @@ final servicesStreamProvider =
     return res.map(Service.fromMap).toList(growable: false);
   });
 });
+
+final servicesByIdsProvider =
+    StreamProvider.family<List<Service>, List<ServiceId>>((ref, ids) {
+  // Prepare the list of Ids into a format accepted by SQLite.
+  final cleanIds = ids
+      .toString()
+      .substring(1, ids.toString().length - 1)
+      .replaceAll(r', ', '\',\'');
+  return db.watch(
+    '''SELECT * FROM services WHERE id 
+      IN ('${cleanIds}') 
+      ORDER BY name_en ASC''',
+  ).map((res) => res.map(Service.fromMap).toList(growable: false));
+});
