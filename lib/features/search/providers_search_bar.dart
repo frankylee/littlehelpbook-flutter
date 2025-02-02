@@ -31,21 +31,21 @@ class _ProviderSearchBarState extends State<ProviderSearchBar> {
         elevation: WidgetStatePropertyAll(0.0),
         hintText: context.l10n.searchProviders,
         hintStyle: WidgetStatePropertyAll(
-          TextStyle(color: context.colorTheme.onSurface.withAlpha(50)),
+          TextStyle(color: context.colorTheme.onSurface.withAlpha(200)),
+        ),
+        leading: Icon(
+          Icons.search_rounded,
+          color: context.colorTheme.onSurface.withAlpha(200),
         ),
         onChanged: (value) => widget.searchNotifier.value = value,
         side: WidgetStatePropertyAll(
-          BorderSide(color: context.colorTheme.secondary),
+          BorderSide(color: context.colorTheme.outlineVariant),
         ),
         trailing: [
-          Icon(
-            Icons.search_rounded,
-            color: context.colorTheme.onSurface.withAlpha(50),
-          ),
           IconButton(
             icon: Icon(
               Icons.close_rounded,
-              color: context.colorTheme.onSurface.withAlpha(50),
+              color: context.colorTheme.onSurface.withAlpha(200),
             ),
             onPressed: () {
               setState(() {
